@@ -34,6 +34,7 @@ async function handleBooking({ venueId, dateFrom, dateTo, guests }) {
 function SpecificCard(props) {
     const { venueId, venue } = props;
     const { media, name, description, price, bookings } = venue;
+    // eslint-disable-next-line no-unused-vars
     const [bookingStatus, setBookingStatus] = useState("");
     const [checkinDate, setCheckinDate] = useState(null);
     const [checkoutDate, setCheckoutDate] = useState(null);

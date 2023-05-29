@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function LogIn() {
+  // eslint-disable-next-line no-unused-vars
   const [alert, setAlert] = useState(false);
   const initialValues = { email: "", password: "" };
 

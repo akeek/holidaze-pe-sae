@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 
 function Register() {
+    // eslint-disable-next-line no-unused-vars
     const [alert, setAlert] = useState(false);
     const [venueManager, setVenueManager] = useState(false);
 
