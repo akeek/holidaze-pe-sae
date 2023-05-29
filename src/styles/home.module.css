@@ -38,6 +38,11 @@
     font-size: 1.9rem;
     vertical-align: middle;
     top: 40%;
+    color: white;
+}
+
+.adventure:hover {
+    color: white;
 }
 
 .bannerBtn {
@@ -55,6 +60,7 @@
 
 .bannerBtn:hover {
     background-color: var(--primary-hover-color);
+    color: white;
 }
 
 @media screen and (max-width: 1000px) {
