@@ -209,6 +209,7 @@ h2 {
 
     .venueCard {
         display: block;
+        padding-bottom: 10px;
     }
 
     .venueImg {
@@ -240,5 +241,9 @@ h2 {
     .inline {
         display: block;
         width: 100%;
+    }
+
+    .facilities {
+        line-height: 1rem;
     }
 }
