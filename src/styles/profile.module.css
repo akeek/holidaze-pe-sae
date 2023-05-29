@@ -7,6 +7,10 @@
     background-color: var(--primary-faded-color);
 }
 
+h1:hover {
+    color: black;
+}
+
 .bookingsH2 {
     text-align: center;
 }
@@ -58,6 +62,7 @@
 
 .edit:hover {
     background-color: var(--primary-hover-color);
+    color: white;
 }
 
 .formBtn {
@@ -100,9 +105,22 @@ h2 {
 
 .venueCard {
     display: flex;
-    background-color: var(--primary-faded-color);
+    background-color: white;
     border-radius: 0 20px;
     padding: 20px;
+    border: 1px solid black;
+}
+
+.link:hover *,
+.venueInfo:hover *,
+.venueCard:hover {
+    color: var(--primary-color);
+
+}
+
+.venueCard:hover {
+    border: 1px solid white;
+    background-color: var(--primary-faded-color);
 }
 
 .imageWidth {

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/latest.module.css";
-import Card from "react-bootstrap/Card";
+import Placeholder from "../../assets/images/placeholder.svg"
 
 function VenuesCard(props) {
   const { id, media, rating, price, description } = props;
@@ -15,9 +15,10 @@ function VenuesCard(props) {
   const specificId = 'specific/' + id
 
   return (
-    <Card className={styles.card}>
+    <div className={styles.card}>
       <a href={specificId} className={styles.cardLink}>
-        <img src={media} alt="" className={styles.gridImg} />
+        {media.length ?
+          <img src={media[0]} alt="" className={styles.gridImg} loading="lazy" /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
         <div className={styles.cardinfo}>
           <p>{destination}</p>
           <p>&#9733;{rating}</p>
@@ -25,7 +26,7 @@ function VenuesCard(props) {
         <p className={styles.descinfo}>{description}</p>
         <p className={styles.priceinfo}>Per night: ${price}</p>
       </a>
-    </Card>
+    </div>
   );
 }
 

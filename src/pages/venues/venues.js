@@ -23,8 +23,6 @@ function Venues() {
         )
     });
 
-    console.log(data);
-
     if (isLoading) {
         return <p>Loading</p>;
     }
@@ -36,7 +34,7 @@ function Venues() {
         <div>
             <div className={styles.search}>
                 <div className={styles.searchContainer}>
-                    <h1>
+                    <h1 className={styles.h1}>
                         Search to find a venue
                     </h1>
                     <div>

@@ -19,7 +19,7 @@ function ProfileBookings() {
                         return null;
                     }
                     return (
-                        <a href={`/specific/${booking.venue.id}`}>
+                        <a className={styles.link} href={`/specific/${booking.venue.id}`}>
                             <div key={booking.id} className={styles.venueCard}>
                                 {booking.venue.media && booking.venue.media.length ? <div className={styles.imageWidth}> <img src={booking.venue.media[0]} alt={booking.venue.name} className={styles.venueImg} /> </div> : <p>Empty</p>}
                                 <div className={styles.venueInfo}>

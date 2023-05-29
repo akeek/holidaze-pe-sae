@@ -2,7 +2,6 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    color: var(--primary-color);
     background-color: white;
     z-index: 8;
 }
@@ -15,8 +14,13 @@
     padding-bottom: 20px;
 }
 
-h1 {
+.h1 {
     padding-top: 5px;
+    color: var(--primary-color);
+}
+
+.h1:hover {
+    color: var(--primary-color);
 }
 
 h3 {
