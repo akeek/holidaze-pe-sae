@@ -6,6 +6,7 @@ const ApiHook = (url) => {
   const [isError, setIsError] = useState(false);
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const { accessToken } = userInfo;
+  const token = accessToken;
 
   useEffect(() => {
     async function getData() {
@@ -14,7 +15,7 @@ const ApiHook = (url) => {
         setIsError(false);
         const fetchedData = await fetch(url, {
           headers: {
-            Authorization: `Bearer ${accessToken}`
+            Authorization: `Bearer ${token}`
           }
         });
         const json = await fetchedData.json();
@@ -28,7 +29,9 @@ const ApiHook = (url) => {
     }
 
     getData();
-  }, [url]);
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [url]);
   return { data, isLoading, isError };
 };
 
