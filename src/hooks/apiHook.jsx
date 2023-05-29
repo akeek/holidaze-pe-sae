@@ -7,17 +7,20 @@ const ApiHook = (url) => {
   const userInfo = JSON.parse(localStorage.getItem("user"));
   const { accessToken } = userInfo;
 
+
   useEffect(() => {
     async function getData() {
       try {
         setIsLoading(true);
         setIsError(false);
+
         const fetchedData = await fetch(url, {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
         });
         const json = await fetchedData.json();
+
         setData(json);
       } catch (error) {
         console.log(error);
@@ -30,6 +33,6 @@ const ApiHook = (url) => {
     getData();
   }, [url, accessToken]);
   return { data, isLoading, isError };
-};
+}
 
 export default ApiHook;

@@ -6,11 +6,10 @@ import Col from "react-bootstrap/Col";
 import { useMediaQuery } from "react-responsive";
 import { Carousel } from "react-bootstrap";
 import styles from "../../styles/latest.module.css";
+import { venuesUrl } from "../../components/constants";
 
 function RecentVenues() {
-  const { data, loading, error } = ApiHook(
-    "https://api.noroff.dev/api/v1/holidaze/venues"
-  );
+  const { data, loading, error } = ApiHook(venuesUrl);
 
   const isMobile = useMediaQuery({ query: "(max-width: 1000px)" });
 
