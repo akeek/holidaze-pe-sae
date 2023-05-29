@@ -1,0 +1,226 @@
+.infoContainer {
+    display: flex;
+    width: 50%;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 0 20px;
+    background-color: var(--primary-faded-color);
+}
+
+.bookingsH2 {
+    text-align: center;
+}
+
+.info {
+    display: block;
+    flex: 70%;
+    padding: 20px 0;
+}
+
+.avatarContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 30%;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.url {
+    width: 340px;
+    height: 30px;
+    font-size: small;
+}
+
+.username {
+    text-align: left;
+    color: black;
+    border-bottom: 1px solid lightgray;
+    margin-right: 20px;
+}
+
+.edit {
+    border: none;
+    background-color: var(--primary-color);
+    width: 180px;
+    margin: 10px auto;
+    color: white;
+    padding: 6px 18px;
+    border-radius: 7px;
+    font-size: 1rem;
+}
+
+.edit:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.formBtn {
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 7px;
+}
+
+.formBtnClose {
+    border: none;
+    background-color: var(--primary-hover-color);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 7px;
+}
+
+.venueInfoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    gap: 1.3rem;
+    padding-bottom: 20px;
+}
+
+.venueInfoContainer a,
+:hover {
+    text-decoration: none;
+    color: black;
+}
+
+h2 {
+    text-align: center;
+}
+
+.venueCard {
+    display: flex;
+    background-color: var(--primary-faded-color);
+    border-radius: 0 20px;
+    padding: 20px;
+}
+
+.imageWidth {
+    width: 100%;
+}
+
+.venueImg {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+    border-right: 1px solid black;
+    padding-right: 20px;
+    border-radius: 0 0 0 10px;
+}
+
+.venueInfo {
+    width: 100%;
+    text-align: left;
+    position: relative;
+    margin-left: 20px;
+}
+
+.venueInfo h5 {
+    border-bottom: 1px solid black;
+}
+
+.priceInfo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 0;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.facilities {
+    line-height: 1rem;
+    gap: 1rem;
+}
+
+.bookingInfoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    gap: 1.3rem;
+    padding-bottom: 60px;
+}
+
+.bookingInfoContainer a,
+:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.inline {
+    display: flex;
+    width: 90%;
+    max-width: 1500px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .infoContainer {
+        width: 90%;
+    }
+
+    .info p {
+        font-size: 0.9rem;
+    }
+
+    .edit {
+        width: 100%;
+        padding: 5px 8px;
+        border-radius: 7px;
+        font-size: 0.8rem;
+    }
+
+    .venueInfoContainer {
+        width: 90%;
+    }
+
+    .venueCard {
+        display: block;
+    }
+
+    .venueImg {
+        width: 100%;
+        max-height: 150px;
+        border-right: none;
+        padding-bottom: 20px;
+        padding-right: 0;
+        border-radius: 0 20px 0 0;
+    }
+
+    .venueInfo {
+        margin-left: 0;
+    }
+
+    .facilities {
+        display: flex;
+        font-size: 0.9rem;
+    }
+
+    .priceInfo {
+        position: relative;
+    }
+
+    .bookingInfoContainer {
+        width: 90%;
+    }
+
+    .inline {
+        display: block;
+        width: 100%;
+    }
+}

@@ -1,0 +1,90 @@
+.gridImg {
+    width: 100%;
+    position: relative;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.cardinfo {
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardLink {
+    text-decoration: none;
+    color: black;
+}
+
+.cardLink:hover {
+    color: var(--primary-color);
+}
+
+.priceinfo {
+    height: 2rem;
+    font-weight: 300;
+}
+
+.descinfo {
+    height: 3rem;
+    font-weight: 300;
+    color: grey;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.banner {
+    color: white;
+    background-color: var(--primary-color);
+    padding: 2px;
+    font-size: 1.2rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 0 0 5px 0;
+    text-decoration: none;
+}
+
+.banner:hover {
+    color: white;
+    background-color: var(--primary-hover-color);
+}
+
+.grid {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.carousel {
+    padding: 15px;
+}
+
+.carousel img {
+    height: 300;
+}
+
+.recentContainer {
+    padding-bottom: 40px;
+}
+
+.recent {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.card {
+    margin-bottom: 30px;
+    border: none !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .card {
+        width: 95%;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+}

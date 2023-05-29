@@ -1,0 +1,67 @@
+.registerContainer {
+    background-color: rgba(245, 244, 244, 0.649);
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    padding: 25px 40px;
+    border-radius: 10px;
+}
+
+h1 {
+    padding-bottom: 20px;
+}
+
+form div {
+    padding-bottom: 20px;
+}
+
+form div span {
+    font-style: italic;
+    font-weight: 300;
+    color: red;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    color: #797c82;
+}
+
+.formBtn {
+    border: none;
+    color: white;
+    background-color: var(--primary-color);
+    padding: 10px 35px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.formBtn:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.checkContainer {
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.checkLabel {
+    display: inline-block;
+}
+
+.checkbox {
+    height: 23px;
+    width: 23px;
+    float: left;
+}
+
+@media screen and (max-width: 1000px) {
+    .registerContainer {
+        width: 85%;
+    }
+}

@@ -1,0 +1,53 @@
+.search {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    color: var(--primary-color);
+    background-color: white;
+    z-index: 8;
+}
+
+.searchContainer {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px lightgrey solid;
+    padding-bottom: 20px;
+}
+
+h1 {
+    padding-top: 5px;
+}
+
+h3 {
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.searchBar {
+    width: 300px;
+    padding: 12px 10px;
+    border-radius: 5px;
+    color: #6b7280;
+    outline: none;
+    border: 1px solid black;
+}
+
+.novenue {
+    text-align: center;
+    padding-top: 50px;
+    color: rgb(0, 42, 255);
+    font-size: 1.3rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .searchContainer {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .searchBar {
+        width: 80%;
+    }
+}

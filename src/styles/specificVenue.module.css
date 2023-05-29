@@ -1,0 +1,209 @@
+.info {
+    background-color: var(--primary-faded-color);
+    width: 800px;
+    max-width: 90%;
+    margin: 40px auto;
+    border-radius: 0 20px 0 20px;
+}
+
+.heading {
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.362);
+    width: 95%;
+    padding-top: 15px;
+}
+
+h2 {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.inline {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.locationInfo {
+    font-style: italic;
+}
+
+.block {
+    flex: 70%;
+    padding-right: 20px;
+}
+
+.carousel img {
+    height: 300px;
+    object-fit: contain;
+}
+
+.venueImg {
+    display: block;
+    width: 100%;
+}
+
+.facilities {
+    text-align: center;
+    border-left: 1px solid rgba(0, 0, 0, 0.362);
+    flex: 30%;
+}
+
+.facilities p {
+    margin-top: -5px;
+}
+
+.descContainer {
+    margin: 20px;
+    margin-top: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.362);
+    border-top: 1px solid rgba(0, 0, 0, 0.362);
+}
+
+.descContainer h5 {
+    margin-top: 20px;
+}
+
+.des {
+    font-size: 1.1rem;
+
+}
+
+.availabilityContainer {
+    display: flex;
+    padding: 0 20px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.availabilityHeading {
+    text-align: center;
+}
+
+.availability {
+    padding-bottom: 20px;
+    padding-right: 20px;
+    flex: 70%;
+    display: flex;
+    justify-content: space-between;
+    border-right: 1px solid rgba(0, 0, 0, 0.362);
+}
+
+.datepicker {
+    padding-bottom: 10px;
+}
+
+.datepicker h4 {
+    margin-bottom: 0;
+}
+
+.datepicker input {
+    text-align: center;
+}
+
+.dateWidth {
+    width: 220px;
+}
+
+.priceInfo {
+    flex: 30%;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 120px;
+}
+
+.venueBtn {
+    width: 75%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-top: 10px;
+    border: none;
+    color: white;
+    background-color: var(--primary-color);
+    padding: 8px 18px;
+    border-radius: 7px;
+    font-size: 1rem;
+}
+
+.venueBtn:hover {
+    background-color: green;
+}
+
+@media screen and (max-width: 1000px) {
+    .info {
+        margin: 20px auto;
+        margin-bottom: 60px;
+    }
+
+    .carousel img {
+        height: 200px;
+        max-width: 70%;
+        margin: 0 auto;
+    }
+
+    .inline {
+        display: block;
+    }
+
+    .block {
+        padding: 0;
+    }
+
+    .descContainer {
+        border-top: none;
+    }
+
+    .descContainer h5 {
+        margin-top: 0;
+    }
+
+    .facilities {
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.362);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.362);
+        border-left: none;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .facilities p {
+        margin-bottom: 0.3rem;
+    }
+
+    .locationInfo p {
+        padding: 0;
+    }
+
+    .carousel img {
+        padding-bottom: 20px;
+    }
+
+    .availabilityContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .availability {
+        display: block;
+        flex: 50%;
+        border-right: none;
+    }
+
+    .priceInfo {
+        text-align: center;
+        flex-direction: column;
+        flex: 50%;
+    }
+
+    .venueBtn {
+        width: 75%;
+        position: relative;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+}
