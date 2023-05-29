@@ -16,21 +16,21 @@ import HomeIcon from '@mui/icons-material/Home';
 
 function CustomNavbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const { user, setUser } = React.useContext(UserContext);
+  const { profile, setProfile } = React.useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const localStoredUser = JSON.parse(localStorage.getItem("user"));
-    setUser(
+    const localStoredUser = JSON.parse(localStorage.getItem("profile"));
+    setProfile(
       localStoredUser
         ? { loggedIn: true, venueManager: localStoredUser.isVenueManager }
         : { loggedIn: false, venueManager: false }
     );
-  }, [setUser]);
+  }, [setProfile]);
 
   function logout() {
     if (window.confirm("Do you want to log out?")) {
-      setUser({ loggedIn: false, venueManager: false });
+      setProfile({ loggedIn: false, venueManager: false });
       localStorage.clear();
       navigate("/");
     }
@@ -79,7 +79,7 @@ function CustomNavbar() {
       <Navbar.Collapse id="navbar-nav">
         <Nav className="mr-auto">
           <Link to="/">Home</Link>
-          {user.loggedIn && (
+          {profile.loggedIn && (
             <Nav.Link className="link">
               <Link to="/profile">Profile</Link>
             </Nav.Link>
@@ -89,7 +89,7 @@ function CustomNavbar() {
           </Nav.Link>
         </Nav>
         <Nav className="ml-auto">
-          {user.loggedIn ? (
+          {profile.loggedIn ? (
             <>
               <Nav.Link className="link">
                 <button className="loginBtn" onClick={logout}>

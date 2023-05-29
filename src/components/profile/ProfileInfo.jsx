@@ -10,7 +10,7 @@ function ProfileInfo() {
     const [email, setEmail] = useState("")
 
     useEffect(() => {
-        const data = JSON.parse(localStorage.getItem("user"));
+        const data = JSON.parse(localStorage.getItem("profile"));
         if (data) {
             setAvatar(data.avatar);
             setUserName(data.name);
@@ -26,8 +26,8 @@ function ProfileInfo() {
     const handleSave = () => {
         setAvatar(newAvatarUrl);
         localStorage.setItem(
-            "user",
-            JSON.stringify({ ...localStorage.getItem("user"), avatar: newAvatarUrl })
+            "profile",
+            JSON.stringify({ ...localStorage.getItem("profile"), avatar: newAvatarUrl })
         );
         handleClose();
     };

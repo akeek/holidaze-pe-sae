@@ -3,14 +3,14 @@ import React, { createContext, useState } from "react";
 const UserContext = createContext();
 
 const Provider = ({ children }) => {
-    const [user, setUser] = useState({
+    const [profile, setProfile] = useState({
         isLoggedIn: false,
         isVenueManager: false,
         accessToken: "",
     });
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ profile, setProfile }}>
             {children}
         </UserContext.Provider>
     );

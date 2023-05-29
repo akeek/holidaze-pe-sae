@@ -3,7 +3,7 @@ import { profileUrl } from "../constants"
 import styles from "../../styles/profile.module.css";
 
 function ProfileBookings() {
-    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const userInfo = JSON.parse(localStorage.getItem("profile"));
     const { name } = userInfo;
     const getBookingsUrl = profileUrl + name + "/bookings?&sort=dateFrom&sortOrder=asc&_venue=true";
     const { data } = ApiHook(getBookingsUrl);

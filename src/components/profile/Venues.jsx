@@ -4,7 +4,7 @@ import styles from "../../styles/profile.module.css";
 import { FaWifi, FaParking, FaDog, FaUtensils } from "react-icons/fa";
 
 function ProfileVenues() {
-    const userInfo = JSON.parse(localStorage.getItem("user"));
+    const userInfo = JSON.parse(localStorage.getItem("profile"));
     const { name } = userInfo;
     const getVenuesUrl = profileUrl + name + "?_venues=true&sort=created";
     const { data } = ApiHook(getVenuesUrl);

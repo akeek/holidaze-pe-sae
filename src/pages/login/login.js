@@ -22,9 +22,15 @@ function LogIn() {
         body: JSON.stringify(values),
       });
 
+      const { accessToken, ...user } = await response.json()
+
+      localStorage.setItem("accessToken", accessToken)
+      localStorage.setItem("profile", JSON.stringify(user))
+
       if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('user', JSON.stringify(data));
+        // const data = await response.json();
+        // console.log(data)
+        // localStorage.setItem('user', JSON.stringify(data));
         setAlert(true);
         toast.success('Login was great success!', {
           position: toast.POSITION.TOP_CENTER,

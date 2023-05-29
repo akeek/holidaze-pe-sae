@@ -4,8 +4,7 @@ const ApiHook = (url) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const userInfo = JSON.parse(localStorage.getItem("user"));
-  const { accessToken } = userInfo;
+  const token = localStorage.getItem("accessToken");
 
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const ApiHook = (url) => {
 
         const fetchedData = await fetch(url, {
           headers: {
-            Authorization: `Bearer ${accessToken}`
+            Authorization: `Bearer ${token}`
           }
         });
         const json = await fetchedData.json();
@@ -31,7 +30,7 @@ const ApiHook = (url) => {
     }
 
     getData();
-  }, [url, accessToken]);
+  }, [url, token]);
   return { data, isLoading, isError };
 }
 
