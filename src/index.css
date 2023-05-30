@@ -150,7 +150,7 @@ footer {
     height: 303px;
     top: 15px!important;
     opacity: 0.9!important;
-    background-color: rgba(255, 255, 255, 0.146)!important;
+    width: 23%!important;
   }
 
   .carousel-control-prev-icon, 

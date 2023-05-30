@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/latest.module.css";
 import Placeholder from "../../assets/images/placeholder.svg"
 
@@ -14,11 +14,21 @@ function VenuesCard(props) {
 
   const specificId = 'specific/' + id
 
+  const [lazy, setLazy] = useState("")
+
+  useEffect(() => {
+    if (id.length) {
+      setLazy("lazy")
+    } else {
+      setLazy("")
+    }
+  }, [id.length])
+  
   return (
     <div className={styles.card}>
       <a href={specificId} className={styles.cardLink}>
         {media.length ?
-          <img loading="lazy" src={media[0]} alt="" className={styles.gridImg}  /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
+          <img loading={lazy} src={media[0]} alt="" className={styles.gridImg}  /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
         <div className={styles.cardInfoContainer}>
             <div className={styles.cardinfo}>
               <p>{destination}</p>
