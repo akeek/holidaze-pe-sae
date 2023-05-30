@@ -24,6 +24,7 @@ body {
   color: var(--primary-color);
   font-size: x-large;
   font-weight: bold;
+  vertical-align: middle;
 }
 
 .home:hover {
@@ -112,6 +113,11 @@ footer {
 }
 
 @media screen and (max-width: 1000px) {
+  header {
+    padding: 10px 20px;
+    height: auto;
+  }
+
   .logo {
     display: flex;
     position: relative;

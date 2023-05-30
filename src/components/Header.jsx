@@ -52,7 +52,7 @@ function CustomNavbar() {
 
   if (isMobile) {
     return (
-      <Box sx={{ width: '100%', position: 'fixed', bottom: '0', left: '0', borderTop: '1px solid black', zIndex: '9' }} value={value} onChange={(event, newValue) => { setValue(newValue) }}>
+      <Box sx={{ width: '100%', position: 'fixed', bottom: '0', left: '0', borderTop: '1px solid var(--primary-faded-color)', zIndex: '9' }} value={value} onChange={(event, newValue) => { setValue(newValue) }}>
         <BottomNavigation
           sx={{ justifyContent: 'space-between' }}
           showLabels

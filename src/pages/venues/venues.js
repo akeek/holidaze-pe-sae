@@ -48,7 +48,7 @@ function Venues() {
                     </div>
                 </div>
             </div>
-            <Container className={styles.venuesContainer}>
+            <Container fluid>
                 {filteredData.length > 0 ? (
                     <Row>
                         <h3>The latest listings</h3>
