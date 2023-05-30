@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/profile.module.css"
 import Modal from "react-bootstrap/Modal";
+import MichaelScott from "../../assets/images/michael-scott-the-office.jpeg"
 
 function ProfileInfo() {
     const [userName, setUserName] = useState("");
@@ -18,7 +19,7 @@ function ProfileInfo() {
         }
     }, []);
 
-    const avatarImg = avatar || "https://img.freepik.com/free-icon/user_318-552176.jpg?w=2000";
+    const avatarImg = avatar || MichaelScott;
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
