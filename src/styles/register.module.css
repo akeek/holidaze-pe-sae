@@ -37,7 +37,6 @@ form div span {
     background-color: var(--primary-color);
     padding: 10px 35px;
     border-radius: 10px;
-    margin-top: 20px;
     font-size: 1.1rem;
 }
 
@@ -46,22 +45,44 @@ form div span {
 }
 
 .checkContainer {
-    display: inline-block;
-    padding-bottom: 20px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 0;
 }
 
 .checkLabel {
-    display: inline-block;
+    display: inline;
+    margin: 0 auto;
 }
 
 .checkbox {
     height: 23px;
     width: 23px;
-    float: left;
+    margin: 0 10px;
+    position: absolute;
+    top: 0;
 }
 
 @media screen and (max-width: 1000px) {
     .registerContainer {
-        width: 85%;
+        width: 90%;
+        padding: 15px 20px;
+    }
+
+    .checkContainer {
+        width: 100%;
+        display: block;
+    }
+
+    .checkLabel {
+        width: 100%;
+    }
+
+    .checkbox {
+        height: 23px;
+        width: 23px;
+        position: relative;
+        top: 4px;
     }
 }

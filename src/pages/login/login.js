@@ -28,9 +28,6 @@ function LogIn() {
       localStorage.setItem("profile", JSON.stringify(user))
 
       if (response.ok) {
-        // const data = await response.json();
-        // console.log(data)
-        // localStorage.setItem('user', JSON.stringify(data));
         setAlert(true);
         toast.success('Login was great success!', {
           position: toast.POSITION.TOP_CENTER,
@@ -100,7 +97,7 @@ function LogIn() {
                   handleSubmit();
                 }}
               >
-                Log In
+                Log in
               </button>
             </Modal.Footer>
             <ToastContainer position="top-center" autoClose={2500} />

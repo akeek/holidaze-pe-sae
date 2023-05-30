@@ -13,6 +13,8 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import PersonIcon from '@mui/icons-material/Person';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 
 function CustomNavbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -49,11 +51,11 @@ function CustomNavbar() {
 
 
   if (isMobile) {
-
     return (
       <Box sx={{ width: '100%', position: 'fixed', bottom: '0', left: '0', borderTop: '1px solid black', zIndex: '9' }} value={value} onChange={(event, newValue) => { setValue(newValue) }}>
         <BottomNavigation
           sx={{ justifyContent: 'space-between' }}
+          showLabels
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
@@ -68,6 +70,27 @@ function CustomNavbar() {
           <Link to="/venues">
             <BottomNavigationAction label="Venues" icon={<LocationOnIcon />} sx={{ color: '#FF5A5F' }} />
           </Link>
+          {profile.loggedIn ? (
+            <>
+              <Link to="/">
+                <BottomNavigationAction label="Logout" icon={<LogoutIcon />} onClick={logout} sx={{ color: '#FF5A5F' }} />
+              </Link>
+            </>
+          ) : (
+            <>
+              <div>
+                <BottomNavigationAction label="Login" icon={<LoginIcon />} onClick={handleLoginClick} sx={{ color: '#FF5A5F' }} />
+              </div>
+            </>
+          )}
+          <Modal show={showLoginModal} onHide={handleCloseLoginModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Log in</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <LogIn handleClose={handleCloseLoginModal} />
+            </Modal.Body>
+          </Modal>
         </BottomNavigation>
       </Box>
     );
@@ -101,7 +124,7 @@ function CustomNavbar() {
             <>
               <Nav.Link className="link">
                 <button className="loginBtn" onClick={handleLoginClick}>
-                  Log In
+                  Log in
                 </button>
               </Nav.Link>
               <Nav.Link className="link">
@@ -113,7 +136,7 @@ function CustomNavbar() {
       </Navbar.Collapse>
       <Modal show={showLoginModal} onHide={handleCloseLoginModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Log In</Modal.Title>
+          <Modal.Title>Log in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <LogIn handleClose={handleCloseLoginModal} />
@@ -124,10 +147,26 @@ function CustomNavbar() {
 }
 
 function Header() {
+  const { profile, setProfile } = React.useContext(UserContext);
+
+  useEffect(() => {
+    const localStoredUser = JSON.parse(localStorage.getItem("profile"));
+    setProfile(
+      localStoredUser
+        ? { loggedIn: true, venueManager: localStoredUser.isVenueManager }
+        : { loggedIn: false, venueManager: false }
+    );
+  }, [setProfile]);
+
   return (
     <header>
       <div class="logo">
         <Link to="/" class="home">HOLIDAZE</Link>
+        {profile.loggedIn ? (
+          ""
+        ) : (
+          <Link to="/register" class="registerMobile">Register</Link>
+        )}
       </div>
       <CustomNavbar />
     </header>
