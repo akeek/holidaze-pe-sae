@@ -8,7 +8,6 @@ function ProfileVenues() {
     const { name } = userInfo;
     const getVenuesUrl = profileUrl + name + "?_venues=true&sort=created";
     const { data } = ApiHook(getVenuesUrl);
-    console.log(data)
 
     const breakfast = <FaUtensils />
     const parking = <FaParking />
