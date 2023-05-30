@@ -20,8 +20,8 @@ function RecentVenues() {
     return (
       <div className={styles.recentContainer}>
         <h2 className={styles.recent}>Recent venues</h2>
-        <Carousel className={styles.carousel}>
-          {data.slice(0, 4).map((venue) => {
+        <Carousel className={styles.carousel} interval={3500}>
+          {data.slice(0, 8).map((venue) => {
             return (
               <Carousel.Item key={venue.id}>
                 <VenuesCard media={venue.media} id={venue.id} rating={venue.rating} city={venue.location.city} country={venue.location.country} price={venue.price} description={venue.description} />

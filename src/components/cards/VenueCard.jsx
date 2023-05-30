@@ -18,7 +18,7 @@ function VenuesCard(props) {
     <div className={styles.card}>
       <a href={specificId} className={styles.cardLink}>
         {media.length ?
-          <img src={media[0]} alt="" className={styles.gridImg} loading="lazy" /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
+          <img src={media[0]} alt="" className={styles.gridImg} /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
         <div className={styles.cardinfo}>
           <p>{destination}</p>
           <p>&#9733;{rating}</p>
