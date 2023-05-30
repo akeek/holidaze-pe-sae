@@ -130,7 +130,7 @@ footer {
     display: block;
     position: absolute;
     right: 0;
-    bottom: -4px;
+    bottom: 0;
     text-decoration: none;
     color: black;
     font-size: large;
