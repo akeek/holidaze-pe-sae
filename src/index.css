@@ -95,6 +95,22 @@ footer {
   display: none;
 }
 
+.errorDiv {
+  padding: 20px;
+}
+
+.errorDiv a {
+  color: blue;
+}
+
+.logInError {
+  text-decoration: underline;
+  padding: 0;
+  border: 0;
+  background-color: white;
+  color: blue;
+}
+
 @media screen and (max-width: 1000px) {
   .logo {
     display: flex;

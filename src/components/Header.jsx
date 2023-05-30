@@ -67,9 +67,13 @@ function CustomNavbar() {
           <Link to="/venues">
             <BottomNavigationAction label="Venues" icon={<LocationOnIcon />} sx={{ color: '#FF5A5F' }} />
           </Link>
-          <Link to="/profile">
-            <BottomNavigationAction label="Profile" icon={<PersonIcon />} sx={{ color: '#FF5A5F' }} />
-          </Link>
+          {profile.loggedIn ? (
+            <Link to="/profile">
+              <BottomNavigationAction label="Profile" icon={<PersonIcon />} sx={{ color: '#FF5A5F' }} />
+            </Link>
+          ) : (
+            ""
+          )}
           {profile.loggedIn ? (
             <>
               <Link to="/">
