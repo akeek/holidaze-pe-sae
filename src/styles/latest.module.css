@@ -1,3 +1,7 @@
+.latestContainer {
+    padding: 0 15px;
+}
+
 .gridImg {
     width: 100%;
     position: relative;
@@ -5,6 +9,10 @@
     border-radius: 0 19px;
     object-fit: cover;
     image-resolution: 100dpi;
+}
+
+.cardInfoContainer {
+    padding: 5px;
 }
 
 .cardinfo {
@@ -64,14 +72,6 @@
     padding: 15px;
 }
 
-.carousel img {
-    height: 300;
-}
-
-.recentContainer {
-    padding-bottom: 40px;
-}
-
 .recent {
     text-align: center;
     margin-bottom: 5px;
@@ -91,12 +91,21 @@
     border-radius: 0 20px;
 }
 
+.h2latest {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
 @media screen and (max-width: 1000px) {
     .card {
         width: 95%;
         margin: 0 auto;
         margin-bottom: 20px;
-        border: 1px solid black;
+        border: 1px solid white;
         border-radius: 0 20px;
+    }
+
+    .gridImg {
+        border-radius: 0 20px 0 0;
     }
 }

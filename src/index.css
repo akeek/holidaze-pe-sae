@@ -24,6 +24,7 @@ body {
   color: var(--primary-color);
   font-size: x-large;
   font-weight: bold;
+  vertical-align: middle;
 }
 
 .home:hover {
@@ -112,6 +113,11 @@ footer {
 }
 
 @media screen and (max-width: 1000px) {
+  header {
+    padding: 10px 20px;
+    height: auto;
+  }
+
   .logo {
     display: flex;
     position: relative;
@@ -124,17 +130,32 @@ footer {
     display: block;
     position: absolute;
     right: 0;
-    bottom: -13px;
+    bottom: -4px;
     text-decoration: none;
     color: black;
     font-size: large;
-    background-color: var(--primary-faded-color);
-    border-radius: 50%;
-    padding: 12px 5px;
   }
 
   .registerMobile:hover {
     color: white;
     background-color: var(--primary-hover-color);
+  }
+
+  body {
+    padding-bottom: 60px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    height: 303px;
+    top: 15px!important;
+    opacity: 0.9!important;
+    background-color: rgba(255, 255, 255, 0.146)!important;
+  }
+
+  .carousel-control-prev-icon, 
+  .carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
   }
 }

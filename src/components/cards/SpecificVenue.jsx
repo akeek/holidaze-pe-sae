@@ -7,7 +7,7 @@ import { Carousel } from "react-bootstrap";
 import { FaWifi, FaParking, FaDog, FaUtensils } from "react-icons/fa";
 
 async function handleBooking({ venueId, dateFrom, dateTo, guests }) {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const accessToken = localStorage.getItem("accessToken");
     try {
         const response = await fetch(
             "https://api.noroff.dev/api/v1/holidaze/bookings",
@@ -15,7 +15,7 @@ async function handleBooking({ venueId, dateFrom, dateTo, guests }) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${user.accessToken}`,
+                    Authorization: `Bearer ${accessToken}`,
                 },
                 body: JSON.stringify({ venueId, dateFrom, dateTo, guests }),
             }
@@ -73,12 +73,13 @@ function SpecificCard(props) {
     }
 
     async function handleCheckAvailability() {
-        if (
-            window.confirm(
-                "Are you sure you want to book the venue for the selected dates?"
-            )
-        ) {
-            if (!checkinDate || !checkoutDate) {
+        const profile = JSON.parse(localStorage.getItem("profile"));
+        if (!profile) {
+            alert("You need to be logged in to book a venue");
+            return;
+        }
+        if  (window.confirm("Are you sure you want to book the venue for the selected dates?")) 
+        {if (!checkinDate || !checkoutDate) {
                 alert("Please select both check-in and check-out dates.");
                 return;
             }
@@ -112,7 +113,7 @@ function SpecificCard(props) {
                 setBookingStatus(bookingStatus);
                 alert("Venue is Booked");
             } else {
-                alert("The venue is not available for the selected dates.");
+                alert("Something has gone wrong");
             }
         }
     }
@@ -205,8 +206,8 @@ function SpecificCard(props) {
                 </div>
                 <div className={styles.priceInfo}>
                     <div>Price per night: ${price}</div>
-                    <div>Total nights: {totalNights < 19539 ? totalNights : ""}</div>
-                    <div>Total price: ${totalPrice < 27159210 ? totalPrice : ""}</div>
+                    <div>Total nights: {totalNights < 100 ? totalNights : ""}</div>
+                    <div>Total price: {totalPrice > 1000000  ? <span>Calculating</span> : <span>${totalPrice}</span> }</div>
                     <button className={styles.venueBtn} onClick={handleCheckAvailability}>
                         Book Venue
                     </button>
