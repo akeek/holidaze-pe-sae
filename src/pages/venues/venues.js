@@ -37,7 +37,7 @@ function Venues() {
                     <h1 className={styles.h1}>
                         Search to find a venue
                     </h1>
-                    <div>
+                    <div className={styles.searchSticky}>
                         <input
                             className={styles.searchBar}
                             type="text"
@@ -48,7 +48,7 @@ function Venues() {
                     </div>
                 </div>
             </div>
-            <Container>
+            <Container className={styles.venuesContainer}>
                 {filteredData.length > 0 ? (
                     <Row>
                         <h3>The latest listings</h3>
