@@ -123,7 +123,7 @@ function SpecificCard(props) {
                     guests: 1,
                 });
                 setBookingStatus(bookingStatus);
-                alert("Venue is Booked");
+                alert("The venue is booked in your name");
             } else {
                 alert("Something has gone wrong");
             }

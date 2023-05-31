@@ -9,7 +9,7 @@ function UpdateOptions() {
 
     const navigate = useNavigate();
     let { id } = useParams();
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     const method = "delete";
 
 
@@ -23,7 +23,7 @@ function UpdateOptions() {
         })
         if (response.ok) {
             alert("The listing is now deleted");
-            navigate("/pages/profile");
+            navigate("/profile");
         } else {
             alert("Something went wrong, please try again")
         }
