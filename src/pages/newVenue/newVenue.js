@@ -162,34 +162,14 @@ function NewVenueForm() {
                     label="Describe your venue"
                     value={description}
                     multiline
-                    rows={2}
+                    rows={3}
                     fullWidth
                     {...register(`description`)}
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <p>{errors.description?.message}</p>
             </div>
-            <p className={styles.mediaMessage}>Press the star to add media-url/picture</p>
-            <div>
-                <TextField
-                    id="media1"
-                    label="Ex: https://ibb.co/dKm1vrY"
-                    name="media"
-                    type="url"
-                    defaultValue=""
-                    fullWidth
-                    InputProps={{
-                        endAdornment: (
-                            <IconButton disabled={disabled1} onClick={handleMedia1Field}>
-                                <StarIcon />
-                            </IconButton>
-                        )
-                    }}
-                    {...register(`media`)}
-                    onChange={(e) => setMedia1(e.target.value)}
-                />
-                <p>{errors.media?.message}</p>
-            </div>
+
             <div>
                 <TextField
                     id="city"
@@ -235,6 +215,28 @@ function NewVenueForm() {
                     onChange={(e) => setMaxGuestsValue(e.target.value)}
                 />
                 <p>{errors.maxGuests?.message}</p>
+            </div>
+
+            <div className={styles.mediaMessage}>
+                <TextField
+                    id="media1"
+                    label="Ex: https://ibb.co/dKm1vrY"
+                    name="media"
+                    type="url"
+                    defaultValue=""
+                    fullWidth
+                    InputProps={{
+                        endAdornment: (
+                            <IconButton disabled={disabled1} onClick={handleMedia1Field}>
+                                <StarIcon />
+                            </IconButton>
+                        )
+                    }}
+                    {...register(`media`)}
+                    onChange={(e) => setMedia1(e.target.value)}
+                />
+                <p>Press the star to confirm media-url</p>
+                <p>{errors.media?.message}</p>
             </div>
             <hr></hr>
             <div>
