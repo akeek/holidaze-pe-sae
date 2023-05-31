@@ -2,12 +2,15 @@ import ApiHook from "../../hooks/apiHook"
 import { profileUrl } from "../constants"
 import styles from "../../styles/profile.module.css";
 import { FaWifi, FaParking, FaDog, FaUtensils } from "react-icons/fa";
+import NewVenue from "../../pages/newVenue";
+
 
 function ProfileVenues() {
     const userInfo = JSON.parse(localStorage.getItem("profile"));
     const { name } = userInfo;
     const getVenuesUrl = profileUrl + name + "?_venues=true&sort=created";
     const { data } = ApiHook(getVenuesUrl);
+
 
     const breakfast = <FaUtensils />
     const parking = <FaParking />
@@ -16,7 +19,7 @@ function ProfileVenues() {
 
     return (
         <div className={styles.venueInfoContainer}>
-            <h2>My venues</h2>
+            <h2 className={styles.h2}>My venues</h2>
             {data.venues && data.venues.length ? (
                 data.venues.map((venue) => (
                     <a href={`specific/${venue.id}`} key={venue.id}>
@@ -49,7 +52,10 @@ function ProfileVenues() {
                             </div>
                         </div>
                     </a>)))
-                : <p>You have no listed venues</p>}
+                : <div>
+                    <p>You have no listed venues</p>
+                </div>}
+            <NewVenue />
         </div>
     );
 }
