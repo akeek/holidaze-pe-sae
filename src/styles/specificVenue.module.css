@@ -9,13 +9,35 @@
 .heading {
     margin: 0 auto;
     border-bottom: 1px solid rgba(0, 0, 0, 0.362);
-    width: 95%;
-    padding-top: 15px;
+    width: 100%;
+    padding: 10px 20px;
+    display: inline-flex;
+    justify-content: space-between;
+    position: relative;
 }
 
-h2 {
+.h2 {
     text-align: left;
     margin-bottom: 0;
+}
+
+.updateOptions {
+    position: relative;
+    top: 5px;
+}
+
+.updateOptions a {
+    padding-right: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.deletebutton {
+    background-color: var(--primary-color);
+    color: white;
+    border: 0;
+    padding: 4px 8px;
+    border-radius: 8px;
 }
 
 .inline {
@@ -133,6 +155,33 @@ h2 {
     background-color: green;
 }
 
+.deleteContainer {
+    height: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.deleteButtons {
+    display: flex;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+.deleteButtons button {
+    background-color: var(--primary-color);
+    color: white;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.deleteButtons button:hover {
+    background-color: var(--primary-hover-color);
+}
+
 @media screen and (max-width: 1000px) {
     .info {
         margin: 20px auto;
@@ -147,6 +196,15 @@ h2 {
 
     .inline {
         display: block;
+    }
+
+    .heading {
+        padding: 10px 20px;
+        width: 100%;
+    }
+
+    .updateOptions {
+        top: 0px;
     }
 
     .block {
