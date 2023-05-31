@@ -73,6 +73,11 @@ h1:hover {
     border-radius: 7px;
 }
 
+.formBtn:hover,
+.formBtnClose:hover {
+    color: white;
+}
+
 .formBtnClose {
     border: none;
     background-color: var(--primary-hover-color);
