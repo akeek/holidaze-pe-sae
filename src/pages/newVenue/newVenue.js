@@ -173,7 +173,7 @@ function NewVenueForm() {
             <div>
                 <TextField
                     id="media1"
-                    label="Media - required"
+                    label="Ex: https://ibb.co/dKm1vrY"
                     name="media"
                     type="url"
                     defaultValue=""
