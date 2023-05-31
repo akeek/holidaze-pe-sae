@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/profile.module.css"
 import Modal from "react-bootstrap/Modal";
-import MichaelScott from "../../assets/images/michael-scott-the-office.jpeg"
+import MichaelScott from "../../assets/images/michael-scott-the-office.jpeg";
 
 function ProfileInfo() {
     const [userName, setUserName] = useState("");
@@ -32,6 +32,38 @@ function ProfileInfo() {
             JSON.stringify({ ...user, avatar: newAvatarUrl })
         );
         handleClose();
+    };
+
+    const onSubmit = async () => {
+        const user = JSON.parse(localStorage.getItem("profile"));
+        const token = localStorage.getItem("accessToken");
+        const url = `https://nf-api.onrender.com/api/v1/holidaze/profiles/${user.name}/media`
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ "avatar": newAvatarUrl })
+        };
+
+        fetch(url, requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    handleSave()
+                    alert("You now have a new profilepicture")
+                    localStorage.setItem(
+                        "profile",
+                        JSON.stringify({ ...user, "avatar": newAvatarUrl })
+                    );
+                    window.location.reload();
+                } else {
+                    throw new Error('Error: ' + response.status);
+                }
+            })
+            .catch(error => {
+                console.error("There was a problem with the PUT request:", error);
+            });
     };
 
 
@@ -66,7 +98,7 @@ function ProfileInfo() {
                     <button className={styles.formBtnClose} onClick={handleClose}>
                         Close
                     </button>
-                    <button className={styles.formBtn} onClick={handleSave}>
+                    <button className={styles.formBtn} onClick={onSubmit}>
                         Update picture
                     </button>
                 </Modal.Footer>
