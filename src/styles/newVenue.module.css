@@ -10,6 +10,11 @@ h1 {
 }
 
 .mediaMessage {
+    margin-bottom: 45px;
+}
+
+.mediaMessage p {
+    margin-top: 5px;
     float: right;
 }
 
