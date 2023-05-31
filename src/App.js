@@ -8,6 +8,7 @@ import Venues from "./pages/venues/venues";
 import Profile from "./pages/profile/profile";
 import RouteNotFound from "./pages/notfound/notfound";
 import Venue from "./pages/specificVenue/specificVenue";
+import NewVenue from "./pages/newVenue/newVenue";
 import NotLoggedIn from './pages/error';
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/error" element={user ? <Navigate replace to={"/profile"} /> : <NotLoggedIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/venues" element={<Venues />} />
+        <Route path="/newVenue" element={<NewVenue />} />
         <Route path="/specific/:id" element={<Venue />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate replace to={"/error"} />} />
         <Route path="*" element={<RouteNotFound />} />
