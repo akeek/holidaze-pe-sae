@@ -1,0 +1,111 @@
+.createVenueForm {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+}
+
+.createVenueForm div {
+    border-radius: 8px;
+}
+
+.form * {
+    display: block;
+}
+
+.dates {
+    padding: 20px;
+    padding-top: 10px;
+    background-color: var(--primary-faded-color);
+    border-radius: 0 20px !important;
+    margin-bottom: 20px;
+}
+
+.toFrom {
+    background-color: white;
+    border-radius: 0 20px;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.toFrom div {
+    padding-bottom: 10px;
+}
+
+.toFrom input {
+    float: right;
+    width: 200px;
+}
+
+.dates label {
+    width: 100%;
+    border: 1px solid lightgray;
+    padding: .375rem 0.75rem;
+    border-radius: 8px;
+    color: rgba(0, 0, 0, 0.546);
+}
+
+.dates h4 {
+    border: none;
+}
+
+.animals,
+.breakfast,
+.parking,
+.wifi {
+    border: 1px solid lightgray;
+    padding: 20px;
+    position: relative;
+    margin: 20px 0;
+    background-color: white;
+}
+
+.animals .checkbox,
+.breakfast .checkbox,
+.parking .checkbox,
+.wifi .checkbox {
+    position: absolute;
+    left: 20px;
+    top: 8px;
+}
+
+.facilities {
+    padding: 20px;
+    background-color: var(--primary-faded-color);
+    border-radius: 0 20px !important;
+    margin-bottom: 20px
+}
+
+.newVenueButton {
+    min-width: 180px;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    color: white;
+    float: right;
+}
+
+.newVenueButton:hover {
+    background-color: var(--primary-hover-color);
+}
+
+@media screen and (max-width: 1000px) {
+    .createVenueForm {
+        width: 100%;
+    }
+
+    .newVenueButton {
+        width: 100%;
+    }
+
+    .toFrom input {
+        width: 130px;
+    }
+
+}

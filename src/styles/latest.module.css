@@ -6,7 +6,7 @@
     width: 100%;
     position: relative;
     height: 300px;
-    border-radius: 0 19px;
+    border-radius: 0 19px 0 0;
     object-fit: cover;
     image-resolution: 100dpi;
 }
@@ -101,7 +101,7 @@
         width: 95%;
         margin: 0 auto;
         margin-bottom: 20px;
-        border: 1px solid white;
+        border: 1px solid lightgray;
         border-radius: 0 20px;
     }
 
