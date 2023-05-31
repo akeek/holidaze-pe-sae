@@ -11,7 +11,7 @@ function ProfileBookings() {
 
     return (
         <div className={styles.bookingInfoContainer}>
-            <h2>My upcoming bookings</h2>
+            <h2 className={styles.h3}>My upcoming bookings</h2>
             {data && data.length ? (
                 data.map((booking) => {
                     const filteredDates = new Date(booking.dateFrom) >= new Date()
@@ -33,7 +33,12 @@ function ProfileBookings() {
                 })
             )
                 :
-                <p>You have no bookings</p>}
+                <div className={styles.noVenue}>
+                    <p className={styles.createContainer}>You have no bookings</p>
+                    <a href="/venues" className={styles.venuesButton}>See venues</a>
+                </div>
+
+            }
         </div >
     )
 }
