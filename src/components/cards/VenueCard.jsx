@@ -23,17 +23,17 @@ function VenuesCard(props) {
       setLazy("")
     }
   }, [id.length])
-  
+
   return (
     <div className={styles.card}>
       <a href={specificId} className={styles.cardLink}>
         {media.length ?
-          <img loading={lazy} src={media[0]} alt="" className={styles.gridImg}  /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
+          <img loading={lazy} src={media[0]} alt="" className={styles.gridImg} /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
         <div className={styles.cardInfoContainer}>
-            <div className={styles.cardinfo}>
-              <p>{destination}</p>
-              <p>&#9733;{rating}</p>
-            </div>
+          <div className={styles.cardinfo}>
+            <p>{destination}</p>
+            <p>&#9733;{rating}</p>
+          </div>
           <p className={styles.descinfo}>{description}</p>
           <p className={styles.priceinfo}>Per night: ${price}</p>
         </div>
