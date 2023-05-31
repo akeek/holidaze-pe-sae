@@ -132,7 +132,7 @@ function SpecificCard(props) {
 
     let destination;
     if (venue.location && (venue.location.city !== "Unknown" && venue.location.city !== "" && venue.location.country !== "Unknown" && venue.location.country !== "")) {
-        destination = <p>{venue.location.city}, {venue.location.country}</p>
+        destination = <p className={styles.destination}>{venue.location.city}, {venue.location.country}</p>
     } else {
         destination = <p>Unknown location</p>
     }
@@ -145,16 +145,16 @@ function SpecificCard(props) {
     return (
         <div className={styles.info}>
             <div className={styles.heading}>
-                <h2 className={styles.h2}>{name}</h2>
+                <div className={styles.locationInfo}>
+                    <h2 className={styles.h2}>{name}</h2>
+                    {destination}
+                </div>
                 {data.owner && data.owner.name === ownerName ?
                     <UpdateOptions className={styles.updateOptions} />
                     : null}
             </div>
             <div className={styles.inline}>
                 <div className={styles.block}>
-                    <div className={styles.locationInfo}>
-                        {destination}
-                    </div>
                     <Carousel className={styles.carousel}>
                         {media.map((img) => (
                             <Carousel.Item key={img}>

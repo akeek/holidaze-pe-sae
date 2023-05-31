@@ -21,23 +21,39 @@
     margin-bottom: 0;
 }
 
-.updateOptions {
-    position: relative;
-    top: 5px;
+.destination {
+    margin-bottom: 0;
 }
 
-.updateOptions a {
-    padding-right: 10px;
+.updateOptions * {
+    margin: 5px;
+}
+
+.editbutton {
+    background-color: var(--primary-color);
+    color: white;
+    border: 0;
+    padding: 6px 40px;
+    border-radius: 8px;
     text-decoration: none;
-    color: black;
+}
+
+.editbutton:hover {
+    color: white;
+    background-color: var(--primary-hover-color);
 }
 
 .deletebutton {
     background-color: var(--primary-color);
     color: white;
     border: 0;
-    padding: 4px 8px;
+    padding: 4px 30px;
     border-radius: 8px;
+    margin-bottom: 0px;
+}
+
+.deletebutton:hover {
+    background-color: var(--primary-hover-color);
 }
 
 .inline {
@@ -67,7 +83,6 @@
 
 .facilities {
     text-align: center;
-    border-left: 1px solid rgba(0, 0, 0, 0.362);
     flex: 30%;
 }
 
@@ -204,7 +219,7 @@
     }
 
     .updateOptions {
-        top: 0px;
+        top: 10px;
     }
 
     .block {
@@ -263,5 +278,14 @@
         position: relative;
         margin: 0 auto;
         margin-top: 10px;
+    }
+
+    .editbutton {
+        padding: 5px 30px;
+    }
+
+
+    .deletebutton {
+        padding: 3px 21px;
     }
 }
