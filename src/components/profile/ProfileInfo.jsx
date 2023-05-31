@@ -25,12 +25,7 @@ function ProfileInfo() {
     const handleShow = () => setShowModal(true);
 
     const handleSave = () => {
-        const user = JSON.parse(localStorage.getItem("profile"));
         setAvatar(newAvatarUrl);
-        localStorage.setItem(
-            "profile",
-            JSON.stringify({ ...user, avatar: newAvatarUrl })
-        );
         handleClose();
     };
 
