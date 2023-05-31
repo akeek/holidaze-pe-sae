@@ -3,11 +3,11 @@ import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, IconButt
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Add } from "@mui/icons-material";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import { venuesUrl } from "../../components/constants";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/newVenue.module.css"
+import StarIcon from '@mui/icons-material/Star';
 
 const schema = yup
     .object({
@@ -147,10 +147,10 @@ function NewVenueForm() {
             <div>
                 <p>- Fill in this form to create a new venue</p>
                 <TextField
-                    fullWidth
                     id="name"
                     label="Name your venue"
                     value={name}
+                    fullWidth
                     {...register(`name`)}
                     onChange={(e) => setName(e.target.value)}
                 />
@@ -158,31 +158,30 @@ function NewVenueForm() {
             </div>
             <div>
                 <TextField
-                    fullWidth
                     id="description"
                     label="Describe your venue"
                     value={description}
                     multiline
                     rows={2}
+                    fullWidth
                     {...register(`description`)}
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <p>{errors.description?.message}</p>
             </div>
-            <p className={styles.mediaMessage}>Press "+" to add media-url's/pictures.</p>
+            <p className={styles.mediaMessage}>Press the star to add media-url/picture</p>
             <div>
                 <TextField
-                    fullWidth
                     id="media1"
-                    label="Media - required"
+                    label="Ex: https://ibb.co/dKm1vrY"
                     name="media"
                     type="url"
                     defaultValue=""
-
+                    fullWidth
                     InputProps={{
                         endAdornment: (
                             <IconButton disabled={disabled1} onClick={handleMedia1Field}>
-                                <Add />
+                                <StarIcon />
                             </IconButton>
                         )
                     }}
@@ -193,10 +192,10 @@ function NewVenueForm() {
             </div>
             <div>
                 <TextField
-                    fullWidth
                     id="city"
                     label="Ex. Los Angeles"
                     value={city}
+                    fullWidth
                     {...register(`city`)}
                     onChange={handleLocationChange}
                 />
@@ -204,10 +203,10 @@ function NewVenueForm() {
             </div>
             <div>
                 <TextField
-                    fullWidth
                     id="country"
                     label="Ex. Norway"
                     value={country}
+                    fullWidth
                     {...register(`country`)}
                     onChange={handleLocationChange}
                 />
@@ -215,11 +214,11 @@ function NewVenueForm() {
             </div>
             <div>
                 <TextField
-                    fullWidth
                     id="price"
                     label="Name your venues daily rate"
                     type="number"
                     value={priceValue}
+                    fullWidth
                     {...register(`price`)}
                     onChange={(e) => setPriceValue(e.target.value)}
                 />
@@ -227,20 +226,21 @@ function NewVenueForm() {
             </div>
             <div>
                 <TextField
-                    fullWidth
                     id="maxGuests"
                     label="How many guests can you host?"
                     type="number"
                     value={maxGuestsValue}
+                    fullWidth
                     {...register(`maxGuests`)}
                     onChange={(e) => setMaxGuestsValue(e.target.value)}
                 />
                 <p>{errors.maxGuests?.message}</p>
             </div>
+            <hr></hr>
             <div>
                 <FormControl>
-                    <FormLabel>Facilities</FormLabel>
-                    <FormGroup sx={{ display: "flex" }}>
+                    <FormLabel>Check the included facilities</FormLabel>
+                    <FormGroup>
                         <FormControlLabel
                             control={<Checkbox checked={wifi} onChange={handleMetaChange} name="wifi" />}
                             label="Wifi"

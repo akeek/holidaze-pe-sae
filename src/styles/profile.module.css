@@ -243,6 +243,7 @@ h2 {
     gap: 1rem;
     background-color: var(--primary-faded-color);
     border-radius: 0 20px;
+    margin-bottom: 60px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -302,6 +303,7 @@ h2 {
         display: block;
         width: 100%;
         background-color: white;
+        margin-bottom: 0;
     }
 
     .facilities {
