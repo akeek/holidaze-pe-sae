@@ -1,7 +1,7 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import ApiHook from "../../hooks/apiHook"
-import SpecificCard from "../../components/cards/SpecificVenue"
+import SpecificCard from "../../components/SpecificVenue/SpecificVenue"
 
 function SpecificVenue() {
     const params = useParams()

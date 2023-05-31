@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import ApiHook from "../../hooks/apiHook";
 import DatePicker from "react-datepicker";
+import { venuesUrl } from "../constants";
 import "react-datepicker/dist/react-datepicker.css";
 import { enGB } from "date-fns/locale";
 import styles from "../../styles/specificVenue.module.css";
 import { Carousel } from "react-bootstrap";
 import { FaWifi, FaParking, FaDog, FaUtensils } from "react-icons/fa";
+import UpdateOptions from "./UpdateOptions";
 
 async function handleBooking({ venueId, dateFrom, dateTo, guests }) {
     const accessToken = localStorage.getItem("accessToken");
@@ -38,6 +42,14 @@ function SpecificCard(props) {
     const [bookingStatus, setBookingStatus] = useState("");
     const [checkinDate, setCheckinDate] = useState(null);
     const [checkoutDate, setCheckoutDate] = useState(null);
+
+    let { id } = useParams();
+    const specific = id + '?_owner=true'
+    const { data } = ApiHook(venuesUrl + specific);
+
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    const ownerName = profile.name
+
 
     if (!Array.isArray(media)) {
         return null;
@@ -78,8 +90,8 @@ function SpecificCard(props) {
             alert("You need to be logged in to book a venue");
             return;
         }
-        if  (window.confirm("Are you sure you want to book the venue for the selected dates?")) 
-        {if (!checkinDate || !checkoutDate) {
+        if (window.confirm("Are you sure you want to book the venue for the selected dates?")) {
+            if (!checkinDate || !checkoutDate) {
                 alert("Please select both check-in and check-out dates.");
                 return;
             }
@@ -128,10 +140,15 @@ function SpecificCard(props) {
     const totalNights = Math.ceil(Math.abs(checkinDate - checkoutDate) / (1000 * 60 * 60 * 24));
     const totalPrice = totalNights * price;
 
+
+
     return (
         <div className={styles.info}>
             <div className={styles.heading}>
-                <h2>{name}</h2>
+                <h2 className={styles.h2}>{name}</h2>
+                {data.owner && data.owner.name === ownerName ?
+                    <UpdateOptions className={styles.updateOptions} />
+                    : null}
             </div>
             <div className={styles.inline}>
                 <div className={styles.block}>
@@ -207,7 +224,7 @@ function SpecificCard(props) {
                 <div className={styles.priceInfo}>
                     <div>Price per night: ${price}</div>
                     <div>Total nights: {totalNights < 100 ? totalNights : ""}</div>
-                    <div>Total price: {totalPrice > 1000000  ? <span>Calculating</span> : <span>${totalPrice}</span> }</div>
+                    <div>Total price: {totalPrice > 1000000 ? <span>Calculating</span> : <span>${totalPrice}</span>}</div>
                     <button className={styles.venueBtn} onClick={handleCheckAvailability}>
                         Book Venue
                     </button>

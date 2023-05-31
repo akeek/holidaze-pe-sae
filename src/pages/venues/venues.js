@@ -10,7 +10,7 @@ import Row from "react-bootstrap/Row";
 
 function Venues() {
     const { data, isLoading, isError } = ApiHook(
-        "https://api.noroff.dev/api/v1/holidaze/venues?limit=40"
+        "https://api.noroff.dev/api/v1/holidaze/venues?sort=created"
     );
 
     const [search, setSearch] = useState("");

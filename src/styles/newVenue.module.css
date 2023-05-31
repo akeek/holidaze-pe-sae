@@ -39,6 +39,7 @@ h1 {
 .toFrom input {
     float: right;
     width: 200px;
+    color: black;
 }
 
 .dates label {
