@@ -1,278 +1,268 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, IconButton } from "@mui/material";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { Add } from "@mui/icons-material";
+import { TextField, Button } from "@mui/material";
+import { venuesUrl } from "../../components/constants";
+import { useNavigate } from "react-router-dom";
 import styles from "../../styles/newVenue.module.css"
-import { useNavigate } from "react-router";
 
-function CreateVenue() {
+const schema = yup
+    .object({
+        name: yup
+            .string()
+            .min(3, "You need at 3 or more characters")
+            .max(30, "Maximum 30 characters")
+            .required("Enter a title/name for your venue"),
+        description: yup
+            .string()
+            .required("A description is required"),
+        media: yup
+            .string()
+            .matches(/^(http(s):\/\/.)[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/, "Enter a valid url")
+            .required("Enter a valid url"),
+        mediaOptional1: yup
+            .string()
+            .matches(/^(http(s):\/\/.)[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/,)
+            .transform((value, originalValue) => {
+                if (!value) {
+                    return null;
+                }
+                return originalValue;
+            })
+            .nullable()
+            .optional(),
+        city: yup
+            .string()
+            .required("In what city is your venue located at?"),
+        country: yup
+            .string()
+            .required("In what country is your venue located at?"),
+        price: yup
+            .number()
+            .typeError("Enter a number")
+            .required("Enter a price per night"),
+        maxGuests: yup
+            .number()
+            .typeError("Enter a number")
+            .min(1, "Venue must room at least 1 guest")
+            .max(100, "Please enter number of guests 100 or less")
+            .required("Enter maximum amount of guests"),
+        meta: yup
+            .boolean(),
+    })
+    .required();
 
+/**
+ * Creates the form for for creating a new venue, with validation
+ */
+function NewVenueForm() {
+    const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: yupResolver(schema) });
     const [name, setName] = useState("");
-    const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
-    const [maxGuests, setMaxGuests] = useState("");
-    const [dateFrom, setDateFrom] = useState("");
-    const [dateTo, setDateTo] = useState("");
-    const [animals, setAnimals] = useState(false);
-    const [breakfast, setBreakfast] = useState(false);
-    const [parking, setParking] = useState(false);
-    const [wifi, setWifi] = useState(false);
-    const [city, setCity] = useState("");
-    const [address, setAddress] = useState("");
-    const [continent, setContinent] = useState("");
-    const [country, setCountry] = useState("");
-    const [zip, setZip] = useState("");
-    const today = new Date().toISOString().split("T")[0];
-    // eslint-disable-next-line no-unused-vars
-    const [venueId, setVenueId] = useState(null);
+    const [media, setMedia] = useState([]);
+    const [priceValue, setPriceValue] = useState("");
+    const price = Number(priceValue);
+    const [maxGuestsValue, setMaxGuestsValue] = useState("");
+    const maxGuests = parseInt(maxGuestsValue);
+    const [meta, setMeta] = useState({
+        wifi: false,
+        parking: false,
+        breakfast: false,
+        pets: false,
+    });
+    const { wifi, parking, breakfast, pets } = meta;
+    const [location, setLocation] = useState({
+        city: "",
+        country: "",
+    });
+    const { city, country } = location;
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    async function onSubmit(e) {
+        const venue = { name, description, media, price, maxGuests, meta, location }
+        const method = "post";
+        const token = localStorage.getItem("accessToken");
+        const body = JSON.stringify(venue);
 
-        const user = JSON.parse(localStorage.getItem("profile"));
-        const token = (localStorage.getItem("accessToken"))
-
-        if (user.venueManager === false) {
-            alert("Become a Venue Manager to create a new Venue");
-            return;
-        }
-
-        const data = {
-            name,
-            description,
-            price: parseInt(price),
-            animals,
-            breakfast,
-            parking,
-            wifi,
-            dateTo,
-            dateFrom,
-            maxGuests: parseInt(maxGuests),
-            city,
-            address,
-            continent,
-            country,
-            zip,
-        };
-
-        try {
-            const response = await fetch(
-                "https://api.noroff.dev/api/v1/holidaze/venues",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                    body: JSON.stringify(data),
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error("Network response was bad");
-            }
-
-            const result = await response.json();
+        if (media.length) {
+            const response = await fetch(venuesUrl, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                method,
+                body
+            })
 
             if (response.ok) {
-                setVenueId(result.id);
-                alert("Venue created successfully!");
-                if (result.id) {
-                    navigate(`/specific/${result.id}`);
-                }
+                alert("Your venue is published!");
+                navigate("/profile");
+            } else {
+                alert("Something went wrong, try again")
             }
-        } catch (error) {
-            console.error("There was a problem with the request:", error);
+        } else {
+            alert("The media - required field must be added")
         }
+    }
+
+    function checkPattern(check) {
+        return (
+            /^(http(s):\/\/.)[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(check)
+        )
+    }
+
+    const [media1, setMedia1] = useState("");
+    const [disabled1, setDisabled1] = useState(false);
+
+    const handleMedia1Field = () => {
+        if (checkPattern(media1)) {
+            setMedia(existMedia => [...existMedia, media1])
+            document.getElementById("media1").disabled = "true";
+            setDisabled1(true);
+        } else {
+            alert("Paste valid url")
+        }
+    }
+
+    const handleLocationChange = (e) => {
+        setLocation({
+            ...location,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleMetaChange = (e) => {
+        setMeta({
+            ...meta,
+            [e.target.name]: e.target.checked,
+        });
     };
 
     return (
         <div className={styles.createVenueForm}>
-            <h1>Create New Venue</h1>
-            <Form onSubmit={handleSubmit}>
-                <div className={styles.name}>
-                    <label>Venue Name</label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Ex. Pete's cabin"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                    />
-                </div>
-                <div className={styles.image}>
-                    <label>Venue Image Url</label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Ex: https://ibb.co/hHsZ0G2"
-                        value={image}
-                        onChange={(event) => setImage(event.target.value)}
-                    />
-                </div>
+            <h1>New listing</h1>
+            <div>
+                <p>- Fill in this form to create a new venue</p>
+                <TextField
+                    fullWidth
+                    id="name"
+                    label="Name your venue"
+                    value={name}
+                    {...register(`name`)}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <p>{errors.name?.message}</p>
+            </div>
+            <div>
+                <TextField
+                    fullWidth
+                    id="description"
+                    label="Describe your venue"
+                    value={description}
+                    multiline
+                    rows={2}
+                    {...register(`description`)}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+                <p>{errors.description?.message}</p>
+            </div>
+            <p className={styles.mediaMessage}>Press "+" to add media-url's/pictures.</p>
+            <div>
+                <TextField
+                    fullWidth
+                    id="media1"
+                    label="Media - required"
+                    name="media"
+                    type="url"
+                    defaultValue=""
 
-                <div className={styles.description}>
-                    <label>Description</label>
-                    <Form.Control
-                        className={styles.description}
-                        type="text"
-                        placeholder="Describe your venue"
-                        value={description}
-                        onChange={(event) => setDescription(event.target.value)}
-                    />
-                </div>
-
-                <div className={styles.price}>
-                    <label>Price per night</label>
-                    <Form.Control
-                        className={styles.price}
-                        type="number"
-                        placeholder="Enter price"
-                        value={price}
-                        onChange={(event) => setPrice(event.target.value)}
-                    />
-                </div>
-
-                <div className={styles.guests}>
-                    <label>Max Guests</label>
-                    <Form.Control
-                        className={styles.price}
-                        type="number"
-                        placeholder="What is the maxumim number of guests?"
-                        value={maxGuests}
-                        onChange={(event) => setMaxGuests(event.target.value)}
-                    />
-                </div>
-
-                <div className={styles.dates}>
-                    <h4>Choose Availability</h4>
-                    <div className={styles.toFrom}>
-                        <div>
-                            <label>
-                                Available from:
-                                <input
-                                    type="date"
-                                    min={today}
-                                    value={dateFrom}
-                                    onChange={(event) => setDateFrom(event.target.value)}
-                                />
-                            </label>
-                        </div>
-
-                        <div>
-                            <label>
-                                Available To:
-                                <input
-                                    type="date"
-                                    value={dateTo}
-                                    min={dateFrom}
-                                    onChange={(event) => setDateTo(event.target.value)}
-                                />
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.location}>
-                    <h4>Location</h4>
-                    <div className={styles.adress}>
-                        <label>Address</label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter Address"
-                            value={address}
-                            onChange={(event) => setAddress(event.target.value)}
-                        />
-                    </div>
-
-                    <div className={styles.city}>
-                        <label>City</label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter City"
-                            value={city}
-                            onChange={(event) => setCity(event.target.value)}
-                        />
-                    </div>
-
-                    <div className={styles.continent}>
-                        <label>Continent</label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter Continent"
-                            value={continent}
-                            onChange={(event) => setContinent(event.target.value)}
-                        />
-                    </div>
-
-                    <div className={styles.country}>
-                        <label>Country</label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter Country"
-                            value={country}
-                            onChange={(event) => setCountry(event.target.value)}
-                        />
-                    </div>
-
-                    <div className={styles.zip}>
-                        <label>Zip Code</label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter Zip Code"
-                            value={zip}
-                            onChange={(event) => setZip(event.target.value)}
-                        />
-                    </div>
-                </div>
-
-                <div className={styles.facilities}>
-                    <h4>Facilites</h4>
-                    <div className={styles.animals}>
-                        <Form.Check
-                            className={styles.checkbox}
-                            type="checkbox"
-                            label="Pets allowed"
-                            checked={animals}
-                            onChange={(event) => setAnimals(event.target.checked)}
-                        />
-                    </div>
-
-                    <div className={styles.breakfast}>
-                        <Form.Check
-                            className={styles.checkbox}
-                            type="checkbox"
-                            label="Breakfast"
-                            checked={breakfast}
-                            onChange={(event) => setBreakfast(event.target.checked)}
-                        />
-                    </div>
-
-                    <div className={styles.parking}>
-                        <Form.Check
-                            className={styles.checkbox}
-                            type="checkbox"
-                            label="Parking"
-                            checked={parking}
-                            onChange={(event) => setParking(event.target.checked)}
-                        />
-                    </div>
-
-                    <div className={styles.wifi}>
-                        <Form.Check
-                            className={styles.checkbox}
-                            type="checkbox"
+                    InputProps={{
+                        endAdornment: (
+                            <IconButton disabled={disabled1} onClick={handleMedia1Field}>
+                                <Add />
+                            </IconButton>
+                        )
+                    }}
+                    {...register(`media`)}
+                    onChange={(e) => setMedia1(e.target.value)}
+                />
+                <p>{errors.media?.message}</p>
+            </div>
+            <div>
+                <TextField
+                    fullWidth
+                    id="city"
+                    label="Ex. Los Angeles"
+                    value={city}
+                    {...register(`city`)}
+                    onChange={handleLocationChange}
+                />
+                <p>{errors.city?.message}</p>
+            </div>
+            <div>
+                <TextField
+                    fullWidth
+                    id="country"
+                    label="Ex. Norway"
+                    value={country}
+                    {...register(`country`)}
+                    onChange={handleLocationChange}
+                />
+                <p>{errors.country?.message}</p>
+            </div>
+            <div>
+                <TextField
+                    fullWidth
+                    id="price"
+                    label="Name your venues daily rate"
+                    type="number"
+                    value={priceValue}
+                    {...register(`price`)}
+                    onChange={(e) => setPriceValue(e.target.value)}
+                />
+                <p>{errors.price?.message}</p>
+            </div>
+            <div>
+                <TextField
+                    fullWidth
+                    id="maxGuests"
+                    label="How many guests can you host?"
+                    type="number"
+                    value={maxGuestsValue}
+                    {...register(`maxGuests`)}
+                    onChange={(e) => setMaxGuestsValue(e.target.value)}
+                />
+                <p>{errors.maxGuests?.message}</p>
+            </div>
+            <div>
+                <FormControl>
+                    <FormLabel>Facilities</FormLabel>
+                    <FormGroup sx={{ display: "flex" }}>
+                        <FormControlLabel
+                            control={<Checkbox checked={wifi} onChange={handleMetaChange} name="wifi" />}
                             label="Wifi"
-                            checked={wifi}
-                            onChange={(event) => setWifi(event.target.checked)}
                         />
-                    </div>
-
-                </div>
-            </Form>
-            <button onClick={handleSubmit} className={styles.newVenueButton}>Create Venue</button>
-        </div>
-    );
-
+                        <FormControlLabel
+                            control={<Checkbox checked={parking} onChange={handleMetaChange} name="parking" />}
+                            label="Parking"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox checked={breakfast} onChange={handleMetaChange} name="breakfast" />}
+                            label="Breakfast"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox checked={pets} onChange={handleMetaChange} name="pets" />}
+                            label="Pets"
+                        />
+                    </FormGroup>
+                </FormControl>
+            </div>
+            <button onClick={handleSubmit(onSubmit)} className={styles.postButton}>Post venue</button>
+        </div >
+    )
 }
 
-export default CreateVenue;
+export default NewVenueForm;
