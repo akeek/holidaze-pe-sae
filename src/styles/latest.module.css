@@ -12,7 +12,8 @@
 }
 
 .cardInfoContainer {
-    padding: 5px;
+    padding: 5px 10px;
+    justify-content: space-between;
 }
 
 .cardinfo {
@@ -98,11 +99,16 @@
 
 @media screen and (max-width: 1000px) {
     .card {
+        min-height: 450px;
         width: 95%;
         margin: 0 auto;
         margin-bottom: 20px;
         border: 1px solid lightgray;
         border-radius: 0 20px;
+    }
+
+    .cardinfo {
+        padding-bottom: 50px;
     }
 
     .gridImg {
