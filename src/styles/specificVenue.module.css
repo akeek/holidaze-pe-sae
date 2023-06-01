@@ -59,7 +59,6 @@
 .inline {
     padding: 20px;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .locationInfo {
@@ -80,7 +79,6 @@
     width: 100%;
     max-height: 350px;
     object-fit: cover;
-
 }
 
 .facilities {
@@ -199,6 +197,48 @@
     background-color: var(--primary-hover-color);
 }
 
+.bookingsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 66%;
+    margin: 20px;
+    border-radius: 0 19px;
+    padding: 20px;
+    background-color: var(--primary-faded-color);
+}
+
+.h5bookings {
+    padding-left: 20px;
+    padding-bottom: 0;
+}
+
+.inlineBooking * {
+    display: inline;
+}
+
+.inlineBookingBottom {
+    padding-bottom: 5px;
+}
+
+.greyBooking {
+    color: var(--primary-hover-color);
+}
+
+.facilitiesMediaq {
+    display: none;
+}
+
+.facilitiesBigscreen {
+    display: flex;
+    flex: 30%;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 0;
+    text-align: left;
+    border-right: 1px solid black;
+    margin-right: 20px;
+}
+
 @media screen and (max-width: 1000px) {
     .info {
         margin: 20px auto;
@@ -218,10 +258,11 @@
     .heading {
         padding: 10px 20px;
         width: 100%;
+        display: block;
     }
 
-    .updateOptions {
-        top: 10px;
+    .updateOptions * {
+        margin: 6px 0;
     }
 
     .block {
@@ -252,6 +293,7 @@
 
     .locationInfo p {
         padding: 0;
+        margin-bottom: 15px;
     }
 
     .carousel img {
@@ -293,5 +335,25 @@
 
     .deletebutton {
         padding: 3px 21px;
+    }
+
+    .bookingsContainer {
+        width: 90%;
+    }
+
+    .facilitiesBigscreen {
+        display: none;
+        visibility: hidden;
+    }
+
+    .facilitiesMediaq {
+        display: block;
+        padding-top: 20px;
+        text-align: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.362);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.362);
+        border-left: none;
+        width: 100%;
+        margin: 0 auto;
     }
 }

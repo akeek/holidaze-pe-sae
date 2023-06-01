@@ -42,10 +42,10 @@ function UpdateOptions() {
     return (
         <div className={styles.updateOptions}>
             <div>
-                <a className={styles.editbutton} href={`/pages/edit-venue/${id}`}>Edit</a>
+                <a className={styles.editbutton} href={`/pages/edit-venue/${id}`}>Edit venue</a>
             </div>
             <div>
-                <button onClick={handleDeleteClick} className={styles.deletebutton}>Delete</button>
+                <button onClick={handleDeleteClick} className={styles.deletebutton}>Delete venue</button>
             </div>
             <Modal
                 show={showDeleteModal}
