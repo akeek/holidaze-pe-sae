@@ -9,6 +9,7 @@ import styles from "../../styles/specificVenue.module.css";
 import { Carousel } from "react-bootstrap";
 import { FaWifi, FaParking, FaDog, FaUtensils } from "react-icons/fa";
 import UpdateOptions from "./UpdateOptions";
+import VenueBookings from "./VenueBookings";
 
 async function handleBooking({ venueId, dateFrom, dateTo, guests }) {
     const accessToken = localStorage.getItem("accessToken");
@@ -87,6 +88,9 @@ function SpecificCard(props) {
             alert("You need to be logged in to book a venue");
             return;
         }
+        if (data.owner.name === profile.name) {
+            alert("You are now booking your own venue");
+        }
         if (window.confirm("Are you sure you want to book the venue for the selected dates?")) {
             if (!checkinDate || !checkoutDate) {
                 alert("Please select both check-in and check-out dates.");
@@ -140,9 +144,17 @@ function SpecificCard(props) {
     let updateOptions;
     const profile = JSON.parse(localStorage.getItem("profile"));
     if (profile) {
-        updateOptions = <div>
+        updateOptions = <div className={styles.updateOptionsContainer}>
             {data.owner && data.owner.name === profile.name ?
                 <UpdateOptions className={styles.updateOptions} /> : null
+            }</div>
+    }
+
+    let venueBookings;
+    if (profile) {
+        venueBookings = <div className={styles.inlineBookingBottom}>
+            {data.owner && data.owner.name === profile.name && profile.venueManager ?
+                <VenueBookings /> : null
             }</div>
     }
 
@@ -155,7 +167,32 @@ function SpecificCard(props) {
                 </div>
                 {updateOptions}
             </div>
+
             <div className={styles.inline}>
+                <div className={styles.facilitiesBigscreen}>
+                    <h4>Facilities</h4>
+                    <div>
+                        {venue.meta && venue.meta.wifi ? <div>
+                            {wifi}
+                            <p>Wifi</p>
+                        </div> : null}
+                        {venue.meta && venue.meta.parking ? <div>
+                            {parking}
+                            <p>Parking</p>
+                        </div> : null}
+                        {venue.meta && venue.meta.breakfast ? <div>
+                            {breakfast}
+                            <p>Breakfast included</p>
+                        </div> : null}
+                        {venue.meta && venue.meta.pets ? <div>
+                            {pets}
+                            <p>Pets allowed</p>
+                        </div> : null}
+                        {venue.meta && !venue.meta.pets && !venue.meta.breakfast && !venue.meta.parking && !venue.meta.wifi ? <div>
+                            <p>No extra facilities</p></div> : null}
+                    </div>
+
+                </div>
                 <div className={styles.block}>
                     {media.length <= 1 ? <img
                         src={media}
@@ -173,7 +210,7 @@ function SpecificCard(props) {
                             ))}
                         </Carousel>}
                 </div>
-                <div className={styles.facilities}>
+                <div className={styles.facilitiesMediaq}>
                     <h4>Facilities</h4>
                     <div>
                         {venue.meta && venue.meta.wifi ? <div>
@@ -235,9 +272,9 @@ function SpecificCard(props) {
                         Book Venue
                     </button>
                 </div>
-
             </div>
-
+            <hr></hr>
+            {venueBookings}
         </div>
     );
 }
