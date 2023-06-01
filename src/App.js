@@ -25,7 +25,7 @@ function App() {
         <Route path="/error" element={user ? <Navigate replace to={"/profile"} /> : <NotLoggedIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/venues" element={<Venues />} />
-        <Route path="/newVenue" element={<NewVenue />} />
+        <Route path="/newVenue" element={user ? <NewVenue /> : <Navigate replace to={"/error"} />} />
         <Route path="/specific/:id" element={<Venue />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate replace to={"/error"} />} />
         <Route path="*" element={<RouteNotFound />} />

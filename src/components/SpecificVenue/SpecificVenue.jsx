@@ -47,10 +47,6 @@ function SpecificCard(props) {
     const specific = id + '?_owner=true'
     const { data } = ApiHook(venuesUrl + specific);
 
-    const profile = JSON.parse(localStorage.getItem("profile"));
-    const ownerName = profile.name
-
-
     if (!Array.isArray(media)) {
         return null;
     }
@@ -59,7 +55,6 @@ function SpecificCard(props) {
     const parking = <FaParking />
     const pets = <FaDog />
     const wifi = <FaWifi />
-
 
     const unavailableDates = bookings
         .map((booking) => {
@@ -149,7 +144,7 @@ function SpecificCard(props) {
                     <h2 className={styles.h2}>{name}</h2>
                     {destination}
                 </div>
-                {data.owner && data.owner.name === ownerName ?
+                {data.owner && data.owner.name === data.owner.name ?
                     <UpdateOptions className={styles.updateOptions} />
                     : null}
             </div>

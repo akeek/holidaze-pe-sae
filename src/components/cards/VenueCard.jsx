@@ -31,7 +31,7 @@ function VenuesCard(props) {
           <img loading={lazy} src={media[0]} alt="" className={styles.gridImg} /> : <img src={Placeholder} alt="" className={styles.gridImg} />}
         <div className={styles.cardInfoContainer}>
           <div className={styles.cardinfo}>
-            <p>{destination}</p>
+            {destination}
             <p>&#9733;{rating}</p>
           </div>
           <p className={styles.descinfo}>{description}</p>
