@@ -38,6 +38,7 @@ async function handleBooking({ venueId, dateFrom, dateTo, guests }) {
 function SpecificCard(props) {
     const { venueId, venue } = props;
     const { media, description, price, bookings } = venue;
+
     // eslint-disable-next-line no-unused-vars
     const [bookingStatus, setBookingStatus] = useState("");
     const [checkinDate, setCheckinDate] = useState(null);
@@ -46,8 +47,7 @@ function SpecificCard(props) {
     let { id } = useParams();
     const specific = id + '?_owner=true'
     const { data } = ApiHook(venuesUrl + specific);
-    const profile = JSON.parse(localStorage.getItem("profile"));
-    const { name } = profile;
+
 
     if (!Array.isArray(media)) {
         return null;
@@ -137,18 +137,23 @@ function SpecificCard(props) {
     const totalNights = Math.ceil(Math.abs(checkinDate - checkoutDate) / (1000 * 60 * 60 * 24));
     const totalPrice = totalNights * price;
 
-
+    let updateOptions;
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    if (profile) {
+        updateOptions = <div>
+            {data.owner && data.owner.name === profile.name ?
+                <UpdateOptions className={styles.updateOptions} /> : null
+            }</div>
+    }
 
     return (
         <div className={styles.info}>
             <div className={styles.heading}>
                 <div className={styles.locationInfo}>
-                    <h2 className={styles.h2}>{data.name}</h2>
+                    <h2 className={styles.h2}>{venue.name}</h2>
                     {destination}
                 </div>
-                {data.owner && data.owner.name === name ?
-                    <UpdateOptions className={styles.updateOptions} />
-                    : null}
+                {updateOptions}
             </div>
             <div className={styles.inline}>
                 <div className={styles.block}>
