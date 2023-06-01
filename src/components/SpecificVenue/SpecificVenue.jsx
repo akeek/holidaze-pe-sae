@@ -37,7 +37,7 @@ async function handleBooking({ venueId, dateFrom, dateTo, guests }) {
 
 function SpecificCard(props) {
     const { venueId, venue } = props;
-    const { media, name, description, price, bookings } = venue;
+    const { media, description, price, bookings } = venue;
     // eslint-disable-next-line no-unused-vars
     const [bookingStatus, setBookingStatus] = useState("");
     const [checkinDate, setCheckinDate] = useState(null);
@@ -46,6 +46,8 @@ function SpecificCard(props) {
     let { id } = useParams();
     const specific = id + '?_owner=true'
     const { data } = ApiHook(venuesUrl + specific);
+    const profile = JSON.parse(localStorage.getItem("profile"));
+    const { name } = profile;
 
     if (!Array.isArray(media)) {
         return null;
@@ -141,26 +143,30 @@ function SpecificCard(props) {
         <div className={styles.info}>
             <div className={styles.heading}>
                 <div className={styles.locationInfo}>
-                    <h2 className={styles.h2}>{name}</h2>
+                    <h2 className={styles.h2}>{data.name}</h2>
                     {destination}
                 </div>
-                {data.owner && data.owner.name === data.owner.name ?
+                {data.owner && data.owner.name === name ?
                     <UpdateOptions className={styles.updateOptions} />
                     : null}
             </div>
             <div className={styles.inline}>
                 <div className={styles.block}>
-                    <Carousel className={styles.carousel}>
-                        {media.map((img) => (
-                            <Carousel.Item key={img}>
-                                <img
-                                    src={img}
-                                    className={styles.venueImg}
-                                    alt={name}
-                                />
-                            </Carousel.Item>
-                        ))}
-                    </Carousel>
+                    {media.length <= 1 ? <img
+                        src={media}
+                        className={styles.venueImg}
+                        alt={data.name} />
+                        : <Carousel className={styles.carousel}>
+                            {media.map((img) => (
+                                <Carousel.Item key={img}>
+                                    <img
+                                        src={img}
+                                        className={styles.venueImg}
+                                        alt={data.name}
+                                    />
+                                </Carousel.Item>
+                            ))}
+                        </Carousel>}
                 </div>
                 <div className={styles.facilities}>
                     <h4>Facilities</h4>

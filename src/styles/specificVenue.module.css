@@ -73,12 +73,14 @@
 
 .carousel img {
     height: 300px;
-    object-fit: contain;
 }
 
 .venueImg {
     display: block;
     width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+
 }
 
 .facilities {
@@ -271,6 +273,10 @@
         text-align: center;
         flex-direction: column;
         flex: 50%;
+    }
+
+    .venueImg {
+        margin-bottom: 20px;
     }
 
     .venueBtn {
