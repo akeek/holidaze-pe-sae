@@ -27,7 +27,7 @@ function ProfileVenues() {
                             {venue.media.length ? <div className={styles.imageWidth}> <img src={venue.media[0]} alt={venue.name} className={styles.venueImg} /> </div> : <p>Empty</p>}
                             <div className={styles.venueInfo}>
                                 <h5>{venue.name}</h5>
-                                <p>Location: {venue.location.city}, {venue.location.country}</p>
+                                <p className={styles.locationInfo}>Location: {venue.location.city}, {venue.location.country}</p>
                                 <div className={styles.facilities}>
                                     {venue.meta && venue.meta.wifi ? <div>
                                         {wifi}
