@@ -28,6 +28,7 @@ function VenueBookings() {
 
     return (
         <div>
+            <hr />
             <h5 className={styles.h5bookings}>Others have booked you venue</h5>
             {sorted && sorted.length ?
                 (sorted.map((d) => {
