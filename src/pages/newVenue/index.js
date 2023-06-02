@@ -1,5 +1,5 @@
 import React from "react";
-import UpdateVenueManager from "../../components/profile/UpdateVenuemanager";
+import UpdateVenueManager from "../../components/SpecificVenue/VenueManager";
 import styles from "../../styles/profile.module.css"
 
 
