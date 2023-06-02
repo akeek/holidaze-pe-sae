@@ -1,0 +1,36 @@
+.updateVenueForm {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.mediaMessage {
+    margin-bottom: 45px;
+}
+
+.mediaMessage p {
+    margin-top: 5px;
+    float: right;
+}
+
+
+.updateButton {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    float: right;
+    min-width: 180px;
+    border: 0;
+    border-radius: 8px;
+}
+
+.updateButton:hover {
+    background-color: green;
+}
+
+@media screen and (max-width: 1000px) {
+    .updateVenueForm {
+        width: 100%;
+    }
+
+}

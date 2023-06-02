@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, IconButton } from "@mui/material";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { TextField } from "@mui/material";
 import { venuesUrl } from "../../components/constants";
-import { useNavigate } from "react-router-dom";
-import styles from "../../styles/newVenue.module.css"
+import { useNavigate, useParams } from "react-router-dom";
+import styles from "../../styles/updateVenue.module.css"
 import StarIcon from '@mui/icons-material/Star';
+import ApiHook from "../../hooks/apiHook";
 
 const schema = yup
     .object({
@@ -55,17 +56,38 @@ const schema = yup
     })
     .required();
 
-/**
- * Creates the form for for creating a new venue, with validation
- */
-function NewVenueForm() {
+
+function UpdateVenueForm() {
     const { register, handleSubmit, formState: { errors }, } = useForm({ resolver: yupResolver(schema) });
+    let { id } = useParams();
+    const { data } = ApiHook(venuesUrl + id);
     const [name, setName] = useState("");
+    useEffect(() => {
+        if (data) {
+            setName(data.name)
+        }
+    }, [data]);
     const [description, setDescription] = useState("");
+    useEffect(() => {
+        if (data) {
+            setDescription(data.description);
+        }
+    }, [data]);
     const [media, setMedia] = useState([]);
+
     const [priceNumber, setPriceNumber] = useState("");
+    useEffect(() => {
+        if (data) {
+            setPriceNumber(data.price);
+        }
+    }, [data]);
     const price = Number(priceNumber);
     const [maxGuestsValue, setMaxGuestsValue] = useState("");
+    useEffect(() => {
+        if (data) {
+            setMaxGuestsValue(data.maxGuests);
+        }
+    }, [data]);
     const maxGuests = parseInt(maxGuestsValue);
     const [meta, setMeta] = useState({
         wifi: false,
@@ -73,22 +95,33 @@ function NewVenueForm() {
         breakfast: false,
         pets: false,
     });
+    useEffect(() => {
+        if (data) {
+            setMeta({ ...data.meta });
+        }
+    }, [data]);
     const { wifi, parking, breakfast, pets } = meta;
     const [location, setLocation] = useState({
         city: "",
         country: "",
     });
+    useEffect(() => {
+        if (data) {
+            setLocation({ ...data.location })
+        }
+    }, [data]);
     const { city, country } = location;
+
     const navigate = useNavigate();
 
     async function onSubmit(e) {
         const venue = { name, description, media, price, maxGuests, meta, location }
-        const method = "post";
+        const method = "put";
         const token = localStorage.getItem("accessToken");
         const body = JSON.stringify(venue);
 
         if (media.length) {
-            const response = await fetch(venuesUrl, {
+            const response = await fetch(venuesUrl + id, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
@@ -98,13 +131,13 @@ function NewVenueForm() {
             })
 
             if (response.ok) {
-                alert("Your venue is published!");
-                navigate("/profile");
+                alert("Your have successfully updated your venue");
+                navigate(`/specificVenue/${id}`);
             } else {
                 alert("Something went wrong, try again")
             }
         } else {
-            alert("The media - required field must be added")
+            alert("Tak another look at the media-field please")
         }
     }
 
@@ -142,16 +175,22 @@ function NewVenueForm() {
     };
 
     return (
-        <div className={styles.createVenueForm}>
-            <h1>New listing</h1>
+        <div>
             <div>
-                <p>- Fill in this form to create a new venue</p>
+                <p>- Fill in this form to update your venue</p>
                 <TextField
                     id="name"
                     label="Name your venue"
-                    value={name}
+                    value={name || ""}
                     fullWidth
-                    {...register(`name`)}
+                    {...register("name", {
+                        required: true,
+                        value: { name },
+                        pattern: {
+                            value: /^.{3,50}$/g,
+                            message: "Must be between 3-50 characters",
+                        }
+                    })}
                     onChange={(e) => setName(e.target.value)}
                 />
                 <p>{errors.name?.message}</p>
@@ -160,23 +199,36 @@ function NewVenueForm() {
                 <TextField
                     id="description"
                     label="Describe your venue"
-                    value={description}
                     multiline
                     rows={3}
+                    value={description || ""}
                     fullWidth
-                    {...register(`description`)}
+                    {...register("description", {
+                        required: true,
+                        value: { description },
+                        pattern: {
+                            value: /^.{1,}$/g,
+                            message: "Enter a description.",
+                        }
+                    })}
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <p>{errors.description?.message}</p>
             </div>
-
             <div>
                 <TextField
                     id="city"
                     label="Ex. Los Angeles"
-                    value={city}
+                    value={city || ""}
                     fullWidth
-                    {...register(`city`)}
+                    {...register("city", {
+                        required: true,
+                        value: { city },
+                        pattern: {
+                            value: /^[a-zA-Z ]{3,30}$/g,
+                            message: "Enter a city, 3-30 characters",
+                        }
+                    })}
                     onChange={changeLocation}
                 />
                 <p>{errors.city?.message}</p>
@@ -185,9 +237,16 @@ function NewVenueForm() {
                 <TextField
                     id="country"
                     label="Ex. Norway"
-                    value={country}
+                    value={country || ""}
                     fullWidth
-                    {...register(`country`)}
+                    {...register("country", {
+                        required: true,
+                        value: { country },
+                        pattern: {
+                            value: /^[a-zA-Z ]{3,30}$/g,
+                            message: "Enter a country, 3-30 characters",
+                        }
+                    })}
                     onChange={changeLocation}
                 />
                 <p>{errors.country?.message}</p>
@@ -197,9 +256,16 @@ function NewVenueForm() {
                     id="price"
                     label="Name your venues daily rate"
                     type="number"
-                    value={priceNumber}
                     fullWidth
-                    {...register(`price`)}
+                    value={priceNumber || ""}
+                    {...register("price", {
+                        required: true,
+                        value: { price },
+                        pattern: {
+                            value: /[1-9][0-9]*/,
+                            message: "Enter a price of at least 1",
+                        }
+                    })}
                     onChange={(e) => setPriceNumber(e.target.value)}
                 />
                 <p>{errors.price?.message}</p>
@@ -209,9 +275,16 @@ function NewVenueForm() {
                     id="maxGuests"
                     label="How many guests can you host?"
                     type="number"
-                    value={maxGuestsValue}
                     fullWidth
-                    {...register(`maxGuests`)}
+                    value={maxGuestsValue || ""}
+                    {...register("maxGuests", {
+                        required: true,
+                        value: { maxGuests },
+                        pattern: {
+                            value: /^(100|[1-9][0-9]?)$/,
+                            message: "Enter maximum amount of guests, 1-100 guests",
+                        }
+                    })}
                     onChange={(e) => setMaxGuestsValue(e.target.value)}
                 />
                 <p>{errors.maxGuests?.message}</p>
@@ -223,7 +296,7 @@ function NewVenueForm() {
                     label="Ex: https://ibb.co/dKm1vrY"
                     name="media"
                     type="url"
-                    defaultValue=""
+                    value={media1 || ""}
                     fullWidth
                     InputProps={{
                         endAdornment: (
@@ -244,27 +317,27 @@ function NewVenueForm() {
                     <FormLabel>Check the included facilities</FormLabel>
                     <FormGroup>
                         <FormControlLabel
-                            control={<Checkbox checked={wifi} onChange={updateMeta} name="wifi" />}
-                            label="Wifi"
+                            control={<Checkbox checked={pets} onChange={updateMeta} name="pets" />}
+                            label="Pets"
                         />
                         <FormControlLabel
-                            control={<Checkbox checked={parking} onChange={updateMeta} name="parking" />}
-                            label="Parking"
+                            control={<Checkbox checked={wifi} onChange={updateMeta} name="wifi" />}
+                            label="Wifi"
                         />
                         <FormControlLabel
                             control={<Checkbox checked={breakfast} onChange={updateMeta} name="breakfast" />}
                             label="Breakfast"
                         />
                         <FormControlLabel
-                            control={<Checkbox checked={pets} onChange={updateMeta} name="pets" />}
-                            label="Pets"
+                            control={<Checkbox checked={parking} onChange={updateMeta} name="parking" />}
+                            label="Parking"
                         />
                     </FormGroup>
                 </FormControl>
             </div>
-            <button onClick={handleSubmit(onSubmit)} className={styles.postButton}>Post venue</button>
+            <button onClick={handleSubmit(onSubmit)} className={styles.updateButton}>Update venue</button>
         </div >
     )
 }
 
-export default NewVenueForm;
+export default UpdateVenueForm;
