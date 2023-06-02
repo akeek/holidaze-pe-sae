@@ -14,7 +14,7 @@ const schema = yup
     .object({
         name: yup
             .string()
-            .min(3, "You need at 3 or more characters")
+            .min(3, "You need 3 or more characters")
             .max(30, "Maximum 30 characters")
             .required("Enter a title/name for your venue"),
         description: yup
@@ -132,7 +132,7 @@ function UpdateVenueForm() {
 
             if (response.ok) {
                 alert("Your have successfully updated your venue");
-                navigate(`/specificVenue/${id}`);
+                navigate(`/profile`);
             } else {
                 alert("Something went wrong, try again")
             }
@@ -177,20 +177,14 @@ function UpdateVenueForm() {
     return (
         <div>
             <div>
-                <p>- Fill in this form to update your venue</p>
+                <h5>Fill in this form to update your venue</h5>
+                <p className={styles.italic}>- You need to edit every field before pressing "Update Venue"</p>
                 <TextField
                     id="name"
                     label="Name your venue"
-                    value={name || ""}
+                    value={name}
                     fullWidth
-                    {...register("name", {
-                        required: true,
-                        value: { name },
-                        pattern: {
-                            value: /^.{3,50}$/g,
-                            message: "Must be between 3-50 characters",
-                        }
-                    })}
+                    {...register(`name`)}
                     onChange={(e) => setName(e.target.value)}
                 />
                 <p>{errors.name?.message}</p>
@@ -201,16 +195,9 @@ function UpdateVenueForm() {
                     label="Describe your venue"
                     multiline
                     rows={3}
-                    value={description || ""}
+                    value={description}
                     fullWidth
-                    {...register("description", {
-                        required: true,
-                        value: { description },
-                        pattern: {
-                            value: /^.{1,}$/g,
-                            message: "Enter a description.",
-                        }
-                    })}
+                    {...register(`description`)}
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <p>{errors.description?.message}</p>
@@ -219,16 +206,9 @@ function UpdateVenueForm() {
                 <TextField
                     id="city"
                     label="Ex. Los Angeles"
-                    value={city || ""}
+                    value={city}
                     fullWidth
-                    {...register("city", {
-                        required: true,
-                        value: { city },
-                        pattern: {
-                            value: /^[a-zA-Z ]{3,30}$/g,
-                            message: "Enter a city, 3-30 characters",
-                        }
-                    })}
+                    {...register(`city`)}
                     onChange={changeLocation}
                 />
                 <p>{errors.city?.message}</p>
@@ -237,16 +217,9 @@ function UpdateVenueForm() {
                 <TextField
                     id="country"
                     label="Ex. Norway"
-                    value={country || ""}
+                    value={country}
                     fullWidth
-                    {...register("country", {
-                        required: true,
-                        value: { country },
-                        pattern: {
-                            value: /^[a-zA-Z ]{3,30}$/g,
-                            message: "Enter a country, 3-30 characters",
-                        }
-                    })}
+                    {...register(`country`)}
                     onChange={changeLocation}
                 />
                 <p>{errors.country?.message}</p>
@@ -257,15 +230,8 @@ function UpdateVenueForm() {
                     label="Name your venues daily rate"
                     type="number"
                     fullWidth
-                    value={priceNumber || ""}
-                    {...register("price", {
-                        required: true,
-                        value: { price },
-                        pattern: {
-                            value: /[1-9][0-9]*/,
-                            message: "Enter a price of at least 1",
-                        }
-                    })}
+                    value={priceNumber}
+                    {...register(`price`)}
                     onChange={(e) => setPriceNumber(e.target.value)}
                 />
                 <p>{errors.price?.message}</p>
@@ -276,15 +242,8 @@ function UpdateVenueForm() {
                     label="How many guests can you host?"
                     type="number"
                     fullWidth
-                    value={maxGuestsValue || ""}
-                    {...register("maxGuests", {
-                        required: true,
-                        value: { maxGuests },
-                        pattern: {
-                            value: /^(100|[1-9][0-9]?)$/,
-                            message: "Enter maximum amount of guests, 1-100 guests",
-                        }
-                    })}
+                    value={maxGuestsValue}
+                    {...register(`maxGuests`)}
                     onChange={(e) => setMaxGuestsValue(e.target.value)}
                 />
                 <p>{errors.maxGuests?.message}</p>
@@ -296,7 +255,7 @@ function UpdateVenueForm() {
                     label="Ex: https://ibb.co/dKm1vrY"
                     name="media"
                     type="url"
-                    value={media1 || ""}
+                    value={media1}
                     fullWidth
                     InputProps={{
                         endAdornment: (

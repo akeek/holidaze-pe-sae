@@ -42,7 +42,7 @@ function UpdateOptions() {
     return (
         <div className={styles.updateOptions}>
             <div>
-                <a className={styles.editbutton} href={`/updateVenue/${id}`}>Edit venue</a>
+                <a className={styles.editbutton} href={`/updateVenue/${id}`}>Update venue</a>
             </div>
             <div>
                 <button onClick={handleDeleteClick} className={styles.deletebutton}>Delete venue</button>
