@@ -13,7 +13,7 @@ const schema = yup
     .object({
         name: yup
             .string()
-            .min(3, "You need at 3 or more characters")
+            .min(3, "You need 3 or more characters")
             .max(30, "Maximum 30 characters")
             .required("Enter a title/name for your venue"),
         description: yup

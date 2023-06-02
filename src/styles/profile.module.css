@@ -100,12 +100,17 @@ h1:hover {
 
 .venueInfoContainer p {
     text-align: left;
+    margin-bottom: 12px;
 }
 
 .venueInfoContainer a,
 :hover {
     text-decoration: none;
     color: black;
+}
+
+.locationInfo {
+    margin-bottom: 5px;
 }
 
 h2 {
@@ -152,6 +157,7 @@ h2 {
 
 .venueInfo h5 {
     border-bottom: 1px solid black;
+    margin-bottom: 0px;
 }
 
 .priceInfo {
@@ -308,5 +314,7 @@ h2 {
 
     .facilities {
         line-height: 1rem;
+        justify-content: space-between;
+        gap: 0;
     }
 }
