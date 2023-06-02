@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { schemaLogin } from "../../components/SchemaReg";
+import { schemaLogin } from "../../components/form/SchemaReg";
 import { Modal } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ToastContainer, toast } from "react-toastify";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../styles/register.module.css";
 import "react-toastify/dist/ReactToastify.css";
-import { schemaReg } from "../../components/SchemaReg";
+import { schemaReg } from "../../components/form/SchemaReg";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 
