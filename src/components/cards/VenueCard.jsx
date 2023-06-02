@@ -12,7 +12,7 @@ function VenuesCard(props) {
     destination = <p>Unknown location</p>
   }
 
-  const specificId = 'specific/' + id
+  const specificId = 'specific/' + id;
 
   const [lazy, setLazy] = useState("")
 

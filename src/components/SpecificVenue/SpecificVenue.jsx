@@ -273,7 +273,6 @@ function SpecificCard(props) {
                     </button>
                 </div>
             </div>
-            <hr></hr>
             {venueBookings}
         </div>
     );

@@ -63,8 +63,8 @@ function NewVenueForm() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [media, setMedia] = useState([]);
-    const [priceValue, setPriceValue] = useState("");
-    const price = Number(priceValue);
+    const [priceNumber, setPriceNumber] = useState("");
+    const price = Number(priceNumber);
     const [maxGuestsValue, setMaxGuestsValue] = useState("");
     const maxGuests = parseInt(maxGuestsValue);
     const [meta, setMeta] = useState({
@@ -197,10 +197,10 @@ function NewVenueForm() {
                     id="price"
                     label="Name your venues daily rate"
                     type="number"
-                    value={priceValue}
+                    value={priceNumber}
                     fullWidth
                     {...register(`price`)}
-                    onChange={(e) => setPriceValue(e.target.value)}
+                    onChange={(e) => setPriceNumber(e.target.value)}
                 />
                 <p>{errors.price?.message}</p>
             </div>
