@@ -160,6 +160,7 @@ function NewVenueForm() {
                 <TextField
                     id="description"
                     label="Describe your venue"
+                    className={styles.input}
                     value={description}
                     multiline
                     rows={3}
@@ -221,6 +222,7 @@ function NewVenueForm() {
                 <TextField
                     id="media1"
                     label="Ex: https://ibb.co/dKm1vrY"
+                    className={styles.input}
                     name="media"
                     type="url"
                     defaultValue=""
