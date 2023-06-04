@@ -120,7 +120,7 @@ function CustomNavbar() {
             <>
               <Nav.Link className="link">
                 <button className="loginBtn" onClick={logout}>
-                  Log Out
+                  Log out
                 </button>
               </Nav.Link>
             </>

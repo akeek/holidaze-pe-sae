@@ -3,7 +3,7 @@
     width: 50%;
     margin: 10px auto;
     padding: 20px;
-    border-radius: 0 20px;
+    border-radius: 0 20px 0 0;
     background-color: var(--primary-faded-color);
 }
 
@@ -120,7 +120,7 @@ h2 {
 .venueCard {
     display: flex;
     background-color: white;
-    border-radius: 0 20px;
+    border-radius: 0 20px 0 0;
     padding: 20px;
 }
 
@@ -145,7 +145,7 @@ h2 {
     object-fit: cover;
     border-right: 1px solid black;
     padding-right: 20px;
-    border-radius: 0 0 0 10px;
+    border-radius: 0;
 }
 
 .venueInfo {
@@ -248,7 +248,7 @@ h2 {
     padding: 20px;
     gap: 1rem;
     background-color: var(--primary-faded-color);
-    border-radius: 0 20px;
+    border-radius: 0 20px 0 0;
     margin-bottom: 60px;
 }
 

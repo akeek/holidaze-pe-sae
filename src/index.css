@@ -1,16 +1,18 @@
-html {
-  font-family: 'Maven Pro', sans-serif;
-}
-
 :root {
   --primary-color: #FF5A5F;
   --primary-hover-color: #b13e42;
   --primary-faded-color: #ff5a602b;
 }
 
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
 body {
   margin: 0;
   overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .app {
@@ -148,12 +150,12 @@ footer {
   .carousel-control-prev,
   .carousel-control-next {
     height: 303px;
-    top: 15px!important;
-    opacity: 0.9!important;
-    width: 23%!important;
+    top: 15px !important;
+    opacity: 0.9 !important;
+    width: 23% !important;
   }
 
-  .carousel-control-prev-icon, 
+  .carousel-control-prev-icon,
   .carousel-control-next-icon {
     background-color: var(--primary-color);
     border-radius: 50%;

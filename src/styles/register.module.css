@@ -1,11 +1,11 @@
 .registerContainer {
-    background-color: rgba(245, 244, 244, 0.649);
+    background-color: var(--primary-faded-color);
     width: 50%;
     margin: 0 auto;
     margin-top: 50px;
     text-align: center;
     padding: 25px 40px;
-    border-radius: 10px;
+    border-radius: 0 20px 0 0;
 }
 
 h1 {
@@ -27,7 +27,7 @@ form div span {
     padding: 10px;
     outline: none;
     border-radius: 10px;
-    border: 1px solid lightgrey;
+    border: 1px solid var(--primary-faded-color);
     color: #797c82;
 }
 
