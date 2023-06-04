@@ -20,7 +20,7 @@ function RecentVenues() {
   if (isMobile) {
     return (
       <div className={styles.recentContainer}>
-        <h2 className={styles.recent}>Recent venues</h2>
+        <h1 className={styles.recent}>New venues</h1>
         <Carousel className={styles.carousel} interval={3500}>
           {data.slice(0, 8).map((venue) => {
             return (
@@ -39,7 +39,7 @@ function RecentVenues() {
     <div>
       <Container fluid>
         <div className={styles.latestContainer}>
-          <h2 className={styles.h2latest}>Recently Added Venues</h2>
+          <h1 className={styles.h2latest}>New Venues</h1>
           <Row className={styles.grid}>
             {data.slice(0, 8).map((venue) => {
               return (
