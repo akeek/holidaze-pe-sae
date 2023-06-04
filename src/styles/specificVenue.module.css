@@ -3,7 +3,7 @@
     width: 800px;
     max-width: 90%;
     margin: 40px auto;
-    border-radius: 0 20px 0 20px;
+    border-radius: 0 20px 0 0;
 }
 
 .heading {
@@ -202,7 +202,7 @@
     flex-direction: column;
     width: 66%;
     margin: 20px;
-    border-radius: 0 19px;
+    border-radius: 0 20px 0 0;
     padding: 20px;
     background-color: var(--primary-faded-color);
 }
