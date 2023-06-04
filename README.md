@@ -1,8 +1,8 @@
 HOLIDAZE - A bookingplatform
 
-<img src="./src/assets/Images/printscreen-homepage.png">
+<img src="./src/assets/images/printscreen-homepage.png">
 
-[Live site] (https://polite-taffy-229633.netlify.app/)
+[Live site - Hosted on Netlify](https://polite-taffy-229633.netlify.app/)
 
 ## Table of context
 
