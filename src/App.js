@@ -2,15 +2,15 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/global/Layout";
 import Home from "./pages/home/home";
-import LogIn from "./pages/login/login";
-import Register from "./pages/register/register";
-import Venues from "./pages/venues/venues";
-import Profile from "./pages/profile/profile";
-import RouteNotFound from "./pages/notfound/notfound";
-import Venue from "./pages/specificVenue/specificVenue";
+import LogIn from "./pages/login";
+import Register from "./pages/register";
+import Venues from "./pages/venues"
+import Profile from "./pages/profile";
+import Venue from "./pages/specificVenue"
 import NewVenue from "./pages/newVenue";
-import UpdateVenue from "./pages/updateVenue/updateVenue";
-import NotLoggedIn from './pages/error';
+import UpdateVenue from "./pages/updateVenue";
+import NotLoggedIn from "./pages/error";
+import RouteNotFound from "./pages/notfound";
 
 
 
