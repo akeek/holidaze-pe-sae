@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { TextField } from "@mui/material";
-import { venuesUrl } from "../../components/constants";
+import { venuesUrl } from "../constants";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles/newVenue.module.css"
 import StarIcon from '@mui/icons-material/Star';
@@ -142,7 +142,7 @@ function NewVenueForm() {
     };
 
     return (
-        <div className={styles.createVenueForm}>
+        <div>
             <h1>New listing</h1>
             <div>
                 <p>- Fill in this form to create a new venue</p>

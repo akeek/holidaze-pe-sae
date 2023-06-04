@@ -8,7 +8,7 @@ import Venues from "./pages/venues/venues";
 import Profile from "./pages/profile/profile";
 import RouteNotFound from "./pages/notfound/notfound";
 import Venue from "./pages/specificVenue/specificVenue";
-import NewVenue from "./pages/newVenue/newVenue";
+import NewVenue from "./pages/newVenue";
 import UpdateVenue from "./pages/updateVenue/updateVenue";
 import NotLoggedIn from './pages/error';
 
