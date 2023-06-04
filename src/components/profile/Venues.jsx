@@ -2,7 +2,7 @@ import ApiHook from "../../hooks/apiHook"
 import { profileUrl } from "../constants"
 import styles from "../../styles/profile.module.css";
 import { FaWifi, FaParking, FaDog, FaUtensils } from "react-icons/fa";
-import NewVenue from "../../pages/newVenue";
+import CreateVenue from "./CreateNewVenue";
 
 
 function ProfileVenues() {
@@ -55,7 +55,7 @@ function ProfileVenues() {
                 : <div>
                     <p>You have no listed venues</p>
                 </div>}
-            <NewVenue />
+            <CreateVenue />
         </div>
     );
 }

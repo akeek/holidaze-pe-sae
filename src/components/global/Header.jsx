@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Modal, Nav, Navbar } from "react-bootstrap";
-import LogIn from "../../pages/login/login";
+import LogIn from "../../pages/login";
 import { UserContext } from "../../useContext/states";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";

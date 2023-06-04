@@ -1,9 +1,9 @@
 import React from "react";
-import UpdateVenueManager from "../../components/SpecificVenue/VenueManager";
+import UpdateVenueManager from "../SpecificVenue/VenueManager";
 import styles from "../../styles/profile.module.css"
 
 
-function NewVenue() {
+function CreateVenue() {
     const user = JSON.parse(localStorage.getItem("profile"));
     const { venueManager } = user
 
@@ -20,4 +20,4 @@ function NewVenue() {
         </div>);
 }
 
-export default NewVenue;
+export default CreateVenue;

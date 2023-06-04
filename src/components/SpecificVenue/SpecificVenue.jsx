@@ -248,6 +248,7 @@ function SpecificCard(props) {
                             filterDate={filterDate}
                             minDate={new Date(Date.now() + (3600 * 1000 * 24))}
                             maxDate={checkoutDate}
+                            placeholderText="Press to see avalibilty"
                             locale={enGB}
                             className={styles.dateWidth}
                         />
@@ -259,6 +260,7 @@ function SpecificCard(props) {
                             onChange={(date) => setCheckoutDate(date)}
                             filterDate={filterDate}
                             minDate={checkinDate}
+                            placeholderText="Press to see avalibilty"
                             locale={enGB}
                             className={styles.dateWidth}
                         />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import LogIn from "../../pages/login/login";
+import LogIn from "../../pages/login";
 
 
 function RedirectInfo() {
