@@ -62,17 +62,20 @@ function UpdateVenueForm() {
     let { id } = useParams();
     const { data } = ApiHook(venuesUrl + id);
     const [name, setName] = useState("");
+
     useEffect(() => {
         if (data) {
             setName(data.name)
         }
     }, [data]);
+
     const [description, setDescription] = useState("");
     useEffect(() => {
         if (data) {
             setDescription(data.description);
         }
     }, [data]);
+
     const [media, setMedia] = useState([]);
 
     const [priceNumber, setPriceNumber] = useState("");
@@ -82,6 +85,7 @@ function UpdateVenueForm() {
         }
     }, [data]);
     const price = Number(priceNumber);
+
     const [maxGuestsValue, setMaxGuestsValue] = useState("");
     useEffect(() => {
         if (data) {
@@ -89,6 +93,7 @@ function UpdateVenueForm() {
         }
     }, [data]);
     const maxGuests = parseInt(maxGuestsValue);
+
     const [meta, setMeta] = useState({
         wifi: false,
         parking: false,
@@ -101,6 +106,7 @@ function UpdateVenueForm() {
         }
     }, [data]);
     const { wifi, parking, breakfast, pets } = meta;
+
     const [location, setLocation] = useState({
         city: "",
         country: "",
@@ -134,10 +140,10 @@ function UpdateVenueForm() {
                 alert("Your have successfully updated your venue");
                 navigate(`/profile`);
             } else {
-                alert("Something went wrong, try again")
+                alert("Ooooops... Something went wrong, try again")
             }
         } else {
-            alert("Tak another look at the media-field please")
+            alert("Take another look at the media/picture-field please")
         }
     }
 
@@ -150,27 +156,27 @@ function UpdateVenueForm() {
     const [media1, setMedia1] = useState("");
     const [disabled1, setDisabled1] = useState(false);
 
-    const handleMedia1Field = () => {
+    const updateMediaField = () => {
         if (checkPattern(media1)) {
             setMedia(existMedia => [...existMedia, media1])
             document.getElementById("media1").disabled = "true";
             setDisabled1(true);
         } else {
-            alert("Paste valid url")
+            alert("Use a valid url")
         }
     }
-
-    const changeLocation = (e) => {
-        setLocation({
-            ...location,
-            [e.target.name]: e.target.value,
-        });
-    };
 
     const updateMeta = (e) => {
         setMeta({
             ...meta,
             [e.target.name]: e.target.checked,
+        });
+    };
+
+    const changeLocation = (e) => {
+        setLocation({
+            ...location,
+            [e.target.name]: e.target.value,
         });
     };
 
@@ -193,6 +199,7 @@ function UpdateVenueForm() {
                 <TextField
                     id="description"
                     label="Describe your venue"
+                    className={styles.input}
                     multiline
                     rows={3}
                     value={description}
@@ -254,12 +261,13 @@ function UpdateVenueForm() {
                     id="media1"
                     label="Ex: https://ibb.co/dKm1vrY"
                     name="media"
+                    className={styles.input}
                     type="url"
                     value={media1}
                     fullWidth
                     InputProps={{
                         endAdornment: (
-                            <IconButton disabled={disabled1} onClick={handleMedia1Field}>
+                            <IconButton disabled={disabled1} onClick={updateMediaField}>
                                 <StarIcon />
                             </IconButton>
                         )
